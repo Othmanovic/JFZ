@@ -1,0 +1,34 @@
+<!-- src/app/components/ship-arrival-details/ship-arrival-details.component.html -->
+<div *ngIf="arrival" class="report-container">
+  <header class="report-header">
+    <h1>Ship Arrival Details</h1>
+    <button class="print-button" (click)="printDetails()">Print</button>
+  </header>
+  <div class="report-content">
+    <table class="details-table">
+      <tbody>
+        <tr>
+          <th>Ship Name</th>
+          <td>{{ arrival.shipName }}</td>
+        </tr>
+        <tr>
+          <th>Owner</th>
+          <td>{{ arrival.owner }}</td>
+        </tr>
+        <tr>
+          <th>Flag</th>
+          <td>{{ arrival.flag }}</td>
+        </tr>
+        <tr>
+          <th>Captain Name</th>
+          <td>{{ arrival.captainName }}</td>
+        </tr>
+        <tr>
+          <th>Shipping Port</th>
+          <td>{{ arrival.shippingPort }}</td>
+        </tr>
+        <!-- Add more fields as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>

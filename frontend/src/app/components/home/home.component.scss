@@ -1,0 +1,23 @@
+.main-content.home-page {
+  direction: rtl; /* Right-to-left layout */
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh; /* Full height */
+
+  .welcome-container {
+    text-align: center;
+    color: #2e3b55;
+    margin-top: 100px;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #555555;
+    }
+  }
+}

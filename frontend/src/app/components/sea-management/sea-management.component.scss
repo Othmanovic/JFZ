@@ -1,0 +1,107 @@
+/* Form grid styling */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #ffffff; /* Light sea blue */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+}
+
+/* Form container styling */
+.ship-arrival-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  border: 5px solid #2c3e50;
+}
+
+/* Main heading styling */
+h1 {
+  font-size: 26px;
+  color: #060606;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Label styling */
+label {
+  display: block;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+  width: 90%;
+  padding: 12px;
+  border: 1px solid #80deea;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #e0f7fa;
+  color: #004d40;
+}
+
+/* Textarea height adjustment */
+textarea {
+  height: 120px;
+}
+
+/* Primary button styling */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #00796b;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.btn:hover {
+  background-color: #004d40;
+}
+
+/* Success message styling */
+.alert-success {
+  background-color: #b2dfdb;
+  color: #004d40;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Error message styling */
+.alert-danger {
+  background-color: #ef9a9a;
+  color: #b71c1c;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}

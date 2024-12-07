@@ -1,0 +1,34 @@
+<div class="add-ship-container">
+  <h1 class="page-title">Add New Ship</h1>
+
+  <form (ngSubmit)="addShip()" class="add-ship-form">
+    <div class="form-group">
+      <label for="shipName">Ship Name</label>
+      <input type="text" id="shipName" [(ngModel)]="shipName" name="shipName" placeholder="Enter ship name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="owner">Ship Owner</label>
+      <input type="text" id="owner" [(ngModel)]="owner" name="owner" placeholder="Enter ship owner" required />
+    </div>
+    
+    <div class="form-group">
+      <label for="owner">Captain Name</label>
+      <input type="text" id="owner" [(ngModel)]="captainName" name="captainName" placeholder="Enter Captain Name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="flag">Flag</label>
+      <input type="text" id="flag" [(ngModel)]="flag" name="flag" placeholder="Enter ship flag" required />
+    </div>
+
+    <div class="form-group">
+      <label for="maxDive">Max Dive (m)</label>
+      <input type="number" id="maxDive" [(ngModel)]="maxDive" name="maxDive" placeholder="Enter max dive" required />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="submit-btn">Add Ship</button>
+    </div>
+  </form>
+</div>

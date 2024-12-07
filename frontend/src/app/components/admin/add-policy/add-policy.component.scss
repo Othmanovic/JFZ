@@ -1,0 +1,79 @@
+.main-content {
+  direction: rtl; /* Makes the content flow from right to left */
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+
+  h2 {
+    color: #2e3b55;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: right; /* Align heading to the right */
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows fields to wrap onto the next row */
+  gap: 20px; /* Adds space between fields */
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Increased container width */
+  margin: auto;
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: right; /* Align labels to the right */
+    color: #2e3b55;
+    display: block; /* Makes the label appear above the input */
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="checkbox"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: right; /* Align text inside inputs to the right */
+    width: 100%; /* Input fields take up full width of their container */
+  }
+
+  .field-group {
+    flex: 0 0 calc(50% - 20px); /* Each field takes half the container's width minus the gap */
+    min-width: 300px; /* Ensures a minimum size for smaller screens */
+    margin-left: 10px;
+  }
+
+  .checkbox-group {
+    flex: 0 0 100%; /* Checkbox spans the entire row */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    input[type="checkbox"] {
+      width: auto; /* Adjust checkbox size */
+      height: auto;
+    }
+  }
+
+  button.submit-button {
+    background-color: #2e3b55;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-end; /* Align button to the bottom-right */
+    transition: background-color 0.3s;
+    display: block;
+
+    &:hover {
+      background-color: #1d2a40;
+    }
+  }
+}

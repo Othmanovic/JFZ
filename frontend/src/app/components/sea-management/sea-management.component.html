@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="ship-arrival-box">
+    <h1>اقرار وصول سفينة</h1>
+
+    <div *ngIf="formSubmitted" class="alert alert-success">
+      تم تقديم الاقرار بنجاح!
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <form #shipArrivalForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid"> <!-- New class for grid layout -->
+
+        <div class="form-group">
+          <label for="shipName">اسم السفينة</label>
+          <select id="shipName" [(ngModel)]="selectedShipName" (change)="onShipSelect($event)" name="shipName" required>
+            <option *ngFor="let ship of ships" [value]="ship.shipName">{{ ship.shipName }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="owner">المالك</label>
+          <input type="text" id="owner" [(ngModel)]="owner" name="owner" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="captainName">اسم القبطان</label>
+          <input type="text" id="captainName" [(ngModel)]="captainName" name="captainName" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="flag">العلم</label>
+          <input type="text" id="flag" [(ngModel)]="flag" name="flag" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="maxDive">الغاطس الأقصى</label>
+          <input type="number" id="maxDive" [(ngModel)]="maxDive" name="maxDive" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="crewNumber">عدد أفراد الطاقم</label>
+          <input type="number" id="crewNumber" [(ngModel)]="crewNumber" name="crewNumber" required>
+        </div>
+
+        <div class="form-group">
+          <label for="crewNationality">جنسية الطاقم</label>
+          <input type="text" id="crewNationality" [(ngModel)]="crewNationality" name="crewNationality" required>
+        </div>
+
+        <div class="form-group">
+          <label for="shipmentType">نوع الشحنة</label>
+          <input type="text" id="shipmentType" [(ngModel)]="shipmentType" name="shipmentType" required>
+        </div>
+
+        <div class="form-group">
+          <label for="shippingPort">ميناء الشحن</label>
+          <input type="text" id="shippingPort" [(ngModel)]="shippingPort" name="shippingPort" required>
+        </div>
+
+        <div class="form-group">
+          <label for="comingFrom">قادمة من</label>
+          <input type="text" id="comingFrom" [(ngModel)]="comingFrom" name="comingFrom" required>
+        </div>
+
+        <div class="form-group">
+          <label for="travelingTo">متوجهة إلى</label>
+          <input type="text" id="travelingTo" [(ngModel)]="travelingTo" name="travelingTo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="shipmentWeight">وزن الشحنة</label>
+          <input type="number" id="shipmentWeight" [(ngModel)]="shipmentWeight" name="shipmentWeight" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="transitShipment">شحنة عبور</label>
+          <input type="text" id="transitShipment" [(ngModel)]="transitShipment" name="transitShipment">
+        </div>
+        
+        <div class="form-group">
+          <label for="arrivalDate">تاريخ الوصول</label>
+          <input type="date" id="arrivalDate" [(ngModel)]="arrivalDate" name="arrivalDate" required>
+        </div>
+        <div class="form-group">
+       
+        </div>
+        
+        <div class="form-group">
+          <label for="shipmentDetails">تفاصيل الشحنة</label>
+          <textarea id="shipmentDetails" [(ngModel)]="shipmentDetails" name="shipmentDetails" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">ملاحظات</label>
+          <textarea id="notes" [(ngModel)]="notes" name="notes"></textarea>
+        </div>
+        
+      </div>
+      <button type="submit" class="btn">إرسال</button>
+    </form>
+  </div>
+</div>

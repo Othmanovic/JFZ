@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Sea Port Management System</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="register-box">
+      <h1>Register</h1>
+      <form (ngSubmit)="register(registerForm)" #registerForm="ngForm">
+        <div class="textbox">
+          <input type="text" placeholder="Username" name="username" [(ngModel)]="username" required>
+        </div>
+        <div class="textbox">
+          <input type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
+        </div>
+        <div class="textbox">
+          <input type="password" placeholder="Confirm Password" name="confirm_password" required>
+        </div>
+        <div class="textbox">
+          <select name="role" [(ngModel)]="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="sea_management">Sea Management</option>
+            <option value="handling_management">Handling Management</option>
+            <option value="reviewer">Reviewer</option>
+            <option value="finance">Finance</option>
+            <option value="hr">HR</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Register</button>
+      </form>
+
+
+      <div class="login-link">
+        <p>Already have an account? <a routerLink="/login">Login here</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

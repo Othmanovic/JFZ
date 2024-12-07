@@ -1,0 +1,29 @@
+<div class="main-content">
+  <h2>Ship Arrival History - Admin</h2>
+  <div class="table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Ship Name</th>
+          <th>Owner</th>
+          <th>Ship Number</th>
+          <th>Details</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let arrival of arrivalsWithShipNumber">
+          <td>{{ arrival.shipName }}</td>
+          <td>{{ arrival.owner }}</td>
+          <td>{{ arrival.shipNumber }}</td>
+          <td>
+            <button [routerLink]="['/admin/policy-details', arrival._id]">عرض التفاصيل</button>
+          </td>
+          <td>
+            <button [routerLink]="['/admin/add-policy', arrival._id]">إضافة بوليصة</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

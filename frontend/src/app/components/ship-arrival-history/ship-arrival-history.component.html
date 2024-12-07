@@ -1,0 +1,34 @@
+<div class="main-content">
+  <h2>Ship Arrival History</h2>
+  <div class="table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Ship Name</th>
+          <th>Owner</th>
+          <th>Flag</th>
+          <th>Captain Name</th>
+          <th>Shipping Port</th>
+          <th>Ship Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let arrival of arrivals">
+          <td>{{ arrival.shipName }}</td>
+          <td>{{ arrival.owner }}</td>
+          <td>{{ arrival.flag }}</td>
+          <td>{{ arrival.captainName }}</td>
+          <td>{{ arrival.shippingPort }}</td>
+          <td>
+            <span *ngIf="arrival.shipNumber">{{ arrival.shipNumber }}</span>
+            <button *ngIf="!arrival.shipNumber" (click)="generateNumber(arrival._id)">Generate Number</button>
+          </td>
+          <td>
+            <button (click)="viewDetails(arrival._id)">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

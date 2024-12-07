@@ -1,0 +1,40 @@
+.main-content {
+  direction: rtl; /* Makes the content flow from right to left */
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+
+  h2 {
+    color: #2e3b55;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2e3b55;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+      background-color: white;
+    }
+
+    tr:hover {
+      background-color: #d1ecf1;
+      cursor: pointer;
+    }
+  }
+}

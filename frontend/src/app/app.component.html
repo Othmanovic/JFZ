@@ -1,0 +1,14 @@
+<div class="app-container">
+  <div *ngIf="isLoggedIn" class="app-header">
+    <app-header></app-header>
+  </div>
+
+  <div *ngIf="isLoggedIn" class="content" [ngClass]="isSidebarVisible ? 'with-sidebar' : 'without-sidebar'">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Login content (for when user is not logged in) -->
+  <div *ngIf="!isLoggedIn" class="login-content">
+    <router-outlet></router-outlet> <!-- This will render the login page -->
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="main-content">
+  <h2>إضافة بوليصة</h2>
+  <form (ngSubmit)="submitBillOfLading()" class="form-container">
+    <div class="field-group">
+      <label for="billNumber">رقم البوليصة</label>
+      <input
+        type="text"
+        id="billNumber"
+        [(ngModel)]="billOfLading.billNumber"
+        name="billNumber"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="receiver">المستلم</label>
+      <input
+        type="text"
+        id="receiver"
+        [(ngModel)]="billOfLading.receiver"
+        name="receiver"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsDescription">وصف البضاعة</label>
+      <input
+        type="text"
+        id="goodsDescription"
+        [(ngModel)]="billOfLading.goodsDescription"
+        name="goodsDescription"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="containerNumber">رقم الحاوية</label>
+      <input
+        type="text"
+        id="containerNumber"
+        [(ngModel)]="billOfLading.containerNumber"
+        name="containerNumber"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="weight">الوزن</label>
+      <input
+        type="number"
+        id="weight"
+        [(ngModel)]="billOfLading.weight"
+        name="weight"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="containerSize">حجم الحاوية</label>
+      <input
+        type="text"
+        id="containerSize"
+        [(ngModel)]="billOfLading.containerSize"
+        name="containerSize"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsSize">حجم البضاعة</label>
+      <input
+        type="text"
+        id="goodsSize"
+        [(ngModel)]="billOfLading.goodsSize"
+        name="goodsSize"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="cooling">التبريد</label>
+      <input
+        type="text"
+        id="cooling"
+        [(ngModel)]="billOfLading.cooling"
+        name="cooling"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="shipmentType">نوع الشحنة ووصفها</label>
+      <input
+      type="text"
+      id="shipmentType"
+      [(ngModel)]="billOfLading.shipmentType"
+      name="shipmentType"
+      required
+      />
+    </div>
+
+    <div class="checkbox-group">
+      <input
+        type="checkbox"
+        id="isShared"
+        [(ngModel)]="billOfLading.isShared"
+        name="isShared"
+      />
+      <label for="isShared">مشتركة</label>
+    </div>
+
+    <button type="submit" class="submit-button">إرسال</button>
+  </form>
+</div>

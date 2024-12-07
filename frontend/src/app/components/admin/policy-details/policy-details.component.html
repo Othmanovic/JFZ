@@ -1,0 +1,39 @@
+<div class="main-content">
+  <h2>تفاصيل البوليصة</h2>
+  <div *ngIf="policy; else noPolicy">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>رقم البوليصة</th>
+          <th>المستلم</th>
+          <th>وصف البضاعة</th>
+          <th>رقم الحاوية</th>
+          <th>الوزن</th>
+          <th>حجم الحاوية</th>
+          <th>حجم البضاعة</th>
+          <th>التبريد</th>
+          <th>مشتركة</th>
+          <th>نوع الشحنة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ policy.billNumber }}</td>
+          <td>{{ policy.receiver }}</td>
+          <td>{{ policy.goodsDescription }}</td>
+          <td>{{ policy.containerNumber }}</td>
+          <td>{{ policy.weight }}</td>
+          <td>{{ policy.containerSize }}</td>
+          <td>{{ policy.goodsSize }}</td>
+          <td>{{ policy.cooling }}</td>
+          <td>{{ policy.isShared }}</td>
+          <td>{{ policy.shipmentType }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noPolicy>
+    <p>لا توجد بوليصة لهذه السفينة.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,40 @@
+.sea-management-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.side-nav {
+  background-color: #004d40; /* Dark teal */
+  width: 210px;
+  margin-top: 4.9rem;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+}
+
+.side-nav nav ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 15px;
+}
+
+.side-nav nav ul li {
+  margin-bottom: 15px;
+}
+
+.side-nav nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.side-nav nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  // background-color: #e0f7fa; /* Light sea blue */
+}
