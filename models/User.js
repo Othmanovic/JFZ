@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'sea_management', 'handling_management', 'reviewer', 'finance', 'hr'],
+    enum: ['admin', 'sea_management', 'handling_management', 'reviewer', 'e3dad', 'finance', 'hr'],
     required: true,
   },
 });

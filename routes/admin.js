@@ -11,7 +11,7 @@ router.post('/add-policy/:id', async (req, res) => {
 
     const updatedShip = await Ship.findByIdAndUpdate(
       id,
-      { policy: policyData }, // Set the policy field
+      { $push: { policy: policyData } }, // Append the new policy to the array
       { new: true } // Return the updated document
     );
 
@@ -24,6 +24,7 @@ router.post('/add-policy/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 // Get the policy of a specific ship
 router.get('/policy-details/:id', async (req, res) => {

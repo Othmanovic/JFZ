@@ -1,0 +1,29 @@
+.main-content {
+  direction: rtl; /* Right-to-left for Arabic content */
+  padding: 20px;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+  th, td {
+    padding: 12px;
+    text-align: right;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #2e3b55;
+    color: #fff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+}

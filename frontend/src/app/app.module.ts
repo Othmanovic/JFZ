@@ -25,6 +25,8 @@ import { AddPolicyComponent } from './components/admin/add-policy/add-policy.com
 import { PolicyDetailsComponent } from './components/admin/policy-details/policy-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { E3dadComponent } from './components/e3dad/e3dad.component';
+import { PolicyListComponent } from './components/e3dad/policy-list/policy-list.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { HomeComponent } from './components/home/home.component';
     PolicyDetailsComponent,
     NotFoundComponent,
     HomeComponent,
+    E3dadComponent,
+    PolicyListComponent,
   ],
   imports: [
     BrowserModule,

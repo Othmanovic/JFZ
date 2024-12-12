@@ -11,60 +11,60 @@ export class SeaManagementService {
   private apiUrl = 'http://localhost:3000/api/sea-management'; // Adjust the URL to your API
 
   constructor(private http: HttpClient) { }
-saveShipArrival(shipArrivalData: any): Observable<any> {
-  let token = localStorage.getItem('id_token');
-  if (!token) {
-    throw new Error('Token not found in local storage');
+  saveShipArrival(shipArrivalData: any): Observable<any> {
+    let token = localStorage.getItem('id_token');
+    if (!token) {
+      throw new Error('Token not found in local storage');
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token.split(' ')[1]}`
+    });
+
+    return this.http.post(this.apiUrl, shipArrivalData, { headers });
   }
 
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token.split(' ')[1]}`
-  });
+  getShipArrivals(): Observable<ShipArrival[]> {
+    let token = localStorage.getItem('id_token');
+    if (!token) {
+      throw new Error('Token not found in local storage');
+    }
 
-  return this.http.post(this.apiUrl, shipArrivalData, { headers });
-}
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token.split(' ')[1]}`
+    });
 
-getShipArrivals(): Observable<ShipArrival[]> {
-  let token = localStorage.getItem('id_token');
-  if (!token) {
-    throw new Error('Token not found in local storage');
+    return this.http.get<ShipArrival[]>(`${this.apiUrl}/ship-arrivals-history`, { headers });
   }
 
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token.split(' ')[1]}`
-  });
+  // Method to get details of a specific ship arrival by ID
+  getShipArrivalById(id: string): Observable<any> {
+    let token = localStorage.getItem('id_token');
+    if (!token) {
+      throw new Error('Token not found in local storage');
+    }
 
-  return this.http.get<ShipArrival[]>(`${this.apiUrl}/ship-arrivals-history`, { headers });
-}
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token.split(' ')[1]}`
+    });
 
-// Method to get details of a specific ship arrival by ID
-getShipArrivalById(id: string): Observable<any> {
-  let token = localStorage.getItem('id_token');
-  if (!token) {
-    throw new Error('Token not found in local storage');
+    return this.http.get<ShipArrival>(`${this.apiUrl}/ship-arrival-details/${id}`, { headers });
   }
 
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token.split(' ')[1]}`
-  });
+  addShip(ship: Ship): Observable<any> {
+    let token = localStorage.getItem('id_token');
+    if (!token) {
+      throw new Error('Token not found in local storage');
+    }
 
-  return this.http.get<ShipArrival>(`${this.apiUrl}/ship-arrival-details/${id}`, { headers });
-}
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token.split(' ')[1]}`
+    });
 
-addShip(ship: Ship): Observable<any> {
-  let token = localStorage.getItem('id_token');
-  if (!token) {
-    throw new Error('Token not found in local storage');
+    return this.http.post(`${this.apiUrl}/add-ship`, ship, { headers });
   }
-
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token.split(' ')[1]}`
-  });
-
-  return this.http.post(`${this.apiUrl}/add-ship`, ship, { headers });
-}
 
   // Fetch all ships
   getShips(): Observable<Ship[]> {
@@ -73,11 +73,11 @@ addShip(ship: Ship): Observable<any> {
       const headerDict = {
         'Authorization': `Bearer ${token.split(' ')[1]}`,  // Ensure 'Bearer' prefix in token
       };
-      
+
       const requestOptions = {
         headers: new HttpHeaders(headerDict),
       };
-      
+
       console.log("Ships in service", requestOptions);
       return this.http.get<Ship[]>(`${this.apiUrl}/ships`, requestOptions);
     } else {
@@ -90,13 +90,16 @@ addShip(ship: Ship): Observable<any> {
     if (!token) {
       throw new Error('Token not found in local storage');
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token.split(' ')[1]}`
     });
-  
+
     return this.http.put(`${this.apiUrl}/ships/${shipId}/generate-number`, {}, { headers });
   }
-  
+
+  getPoliciesForShip(shipId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/ships/${shipId}/policies`);
+  }
 
 }

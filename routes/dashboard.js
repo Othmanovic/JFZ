@@ -9,6 +9,11 @@ router.get('/handling_management', auth, (req, res) => {
   res.json({ message: 'Welcome to the Handling Management dashboard' });
 });
 
+router.get('/sea_management', auth, (req, res) => {
+  if (req.user.role !== 'sea_management') return res.status(403).json({ message: 'Access denied' });
+  res.json({ message: 'Welcome to the Handling Management dashboard' });
+});
+
 router.get('/reviewer', auth, (req, res) => {
   if (req.user.role !== 'reviewer') return res.status(403).json({ message: 'Access denied' });
   res.json({ message: 'Welcome to the Reviewer dashboard' });
@@ -27,6 +32,11 @@ router.get('/hr', auth, (req, res) => {
 router.get('/admin', auth, (req, res) => {
   if (req.user.role !== 'admin') return res.status(403).json({ message: 'Access denied' });
   res.json({ message: 'Welcome to the Admin dashboard' });
+});
+
+router.get('/e3dad', auth, (req, res) => {
+  if (req.user.role !== 'e3dad') return res.status(403).json({ message: 'Access denied' });
+  res.json({ message: 'Welcome to the e3dad dashboard' });
 });
 
 module.exports = router;

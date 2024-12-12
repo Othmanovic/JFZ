@@ -1,0 +1,58 @@
+<div class="main-content">
+  <h2>قائمة السفن</h2>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>اسم السفينة</th>
+        <th>الإجراء</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ship of ships">
+        <td>{{ ship.shipName }}</td>
+        <td>
+          <button (click)="viewPolicies(ship)">عرض التفاصيل</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Policies Section -->
+  <div *ngIf="selectedShipPolicies.length > 0; else noPolicy">
+    <h2>بوالص السفينة: {{ selectedShipName }}</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>رقم البوليصة</th>
+          <th>المستلم</th>
+          <th>وصف البضاعة</th>
+          <th>رقم الحاوية</th>
+          <th>الوزن</th>
+          <th>حجم الحاوية</th>
+          <th>حجم البضاعة</th>
+          <th>التبريد</th>
+          <th>مشتركة</th>
+          <th>نوع الشحنة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let policy of selectedShipPolicies">
+          <td>{{ policy.billNumber }}</td>
+          <td>{{ policy.receiver }}</td>
+          <td>{{ policy.goodsDescription }}</td>
+          <td>{{ policy.containerNumber }}</td>
+          <td>{{ policy.weight }}</td>
+          <td>{{ policy.containerSize }}</td>
+          <td>{{ policy.goodsSize }}</td>
+          <td>{{ policy.cooling }}</td>
+          <td>{{ policy.isShared ? 'نعم' : 'لا' }}</td>
+          <td>{{ policy.shipmentType }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noPolicy>
+    <h2>لا توجد بوالص للسفينة {{ selectedShipName }}</h2>
+  </ng-template>
+</div>

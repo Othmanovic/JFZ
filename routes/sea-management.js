@@ -54,7 +54,7 @@ router.get('/ship-arrivals-history', authMiddleware, async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Error fetching ship arrivals', error: err });
   }
-}); 
+});
 
 // Route to get ship arrival details by ID
 router.get('/ship-arrival-details/:id', authMiddleware, async (req, res) => {
@@ -129,6 +129,21 @@ router.put('/ships/:id/generate-number', async (req, res) => {
     res.status(500).send({ error: 'Error generating ship number' });
   }
 });
+
+// Get policies for a specific ship
+router.get('/ships/:id/policies', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const ship = await Ship.findById(id);
+    if (!ship) {
+      return res.status(404).json({ message: 'Ship not found' });
+    }
+    res.status(200).json(ship.policy); // Return the array of policies
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 
 module.exports = router;

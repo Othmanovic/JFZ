@@ -9,7 +9,7 @@ import { AdminService } from '../../../services/admin.service';
 })
 export class PolicyDetailsComponent implements OnInit {
   shipId: string = '';
-  policy: any = null;
+  policies: any[] = []; // Updated to handle multiple policies
 
   constructor(
     private route: ActivatedRoute,
@@ -18,16 +18,16 @@ export class PolicyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.shipId = this.route.snapshot.paramMap.get('id') || '';
-    this.fetchPolicyDetails();
+    this.fetchPolicies();
   }
 
-  fetchPolicyDetails(): void {
+  fetchPolicies(): void {
     this.adminService.getShipPolicy(this.shipId).subscribe(
       (data) => {
-        this.policy = data.policy; // Assuming policy is stored under `policy` in the response
+        this.policies = data.policy; // Expecting `data` to be an array of policies
       },
       (error) => {
-        console.error('Error fetching policy details:', error);
+        console.error('Error fetching policies:', error);
       }
     );
   }

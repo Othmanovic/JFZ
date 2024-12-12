@@ -1,6 +1,6 @@
 <div class="main-content">
-  <h2>تفاصيل البوليصة</h2>
-  <div *ngIf="policy; else noPolicy">
+  <h2>تفاصيل البوالص</h2>
+  <div *ngIf="policies.length > 0; else noPolicy">
     <table class="custom-table">
       <thead>
         <tr>
@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let policy of policies">
           <td>{{ policy.billNumber }}</td>
           <td>{{ policy.receiver }}</td>
           <td>{{ policy.goodsDescription }}</td>
@@ -26,7 +26,7 @@
           <td>{{ policy.containerSize }}</td>
           <td>{{ policy.goodsSize }}</td>
           <td>{{ policy.cooling }}</td>
-          <td>{{ policy.isShared }}</td>
+          <td>{{ policy.isShared ? 'نعم' : 'لا' }}</td>
           <td>{{ policy.shipmentType }}</td>
         </tr>
       </tbody>
@@ -34,6 +34,6 @@
   </div>
 
   <ng-template #noPolicy>
-    <p>لا توجد بوليصة لهذه السفينة.</p>
+    <p>لا توجد بوالص لهذه السفينة.</p>
   </ng-template>
 </div>

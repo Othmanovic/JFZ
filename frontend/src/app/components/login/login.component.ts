@@ -13,7 +13,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   login() {
     const user = {
@@ -23,22 +23,22 @@ export class LoginComponent {
 
     console.log('User Obj', user); // This should now log the correct values
 
-   this.authService.login(user).subscribe(
-  (data) => {
-    if (data && data.success) {
-      localStorage.setItem('token', data.token);  // Save the token
-      localStorage.setItem('user', JSON.stringify(data.user));  // Save the full user object
-      this.redirectUser(data.user.role);  // Redirect based on user role
-      console.log("Role: ",data.user.role);
-    } else {
-      alert('Invalid username or password');
-    }
-  },
-  (error) => {
-    console.error('Error during login:', error);
-    alert('Error during login. Please try again.');
-  }
-);
+    this.authService.login(user).subscribe(
+      (data) => {
+        if (data && data.success) {
+          localStorage.setItem('token', data.token);  // Save the token
+          localStorage.setItem('user', JSON.stringify(data.user));  // Save the full user object
+          this.redirectUser(data.user.role);  // Redirect based on user role
+          console.log("Role: ", data.user.role);
+        } else {
+          alert('Invalid username or password');
+        }
+      },
+      (error) => {
+        console.error('Error during login:', error);
+        alert('Error during login. Please try again.');
+      }
+    );
 
   }
 
@@ -62,10 +62,13 @@ export class LoginComponent {
       case 'admin':
         this.router.navigate(['/admin']);
         break;
+      case 'e3dad': // Add the new role
+        this.router.navigate(['/e3dad']);
+        break;
       default:
         this.router.navigate(['/login']);
         break;
     }
-}
+  }
 
 }

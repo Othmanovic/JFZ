@@ -17,6 +17,8 @@ import { AddPolicyComponent } from './components/admin/add-policy/add-policy.com
 import { PolicyDetailsComponent } from './components/admin/policy-details/policy-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { E3dadComponent } from './components/e3dad/e3dad.component';
+import { PolicyListComponent } from './components/e3dad/policy-list/policy-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -52,9 +54,12 @@ const routes: Routes = [
   { path: 'finance', component: FinanceComponent, canActivate: [AuthGuard], },
   { path: 'hr', component: HrComponent, canActivate: [AuthGuard], },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], },
+  { path: 'e3dad', component: E3dadComponent, canActivate: [AuthGuard] },
+  { path: 'e3dad/ships/:id/policies', component: PolicyListComponent, canActivate: [AuthGuard] },
 
 
-   { path: 'home', component: HomeComponent }, // Generic Home Page
+
+  { path: 'home', component: HomeComponent }, // Generic Home Page
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root to home
   { path: '**', component: NotFoundComponent }, // Wildcard route for a 404 page
 
