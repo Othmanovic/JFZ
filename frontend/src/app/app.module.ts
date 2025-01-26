@@ -27,6 +27,17 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { E3dadComponent } from './components/e3dad/e3dad.component';
 import { PolicyListComponent } from './components/e3dad/policy-list/policy-list.component';
+import { EditPolicyComponent } from './components/admin/edit-policy/edit-policy.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { PopupDialogComponent } from './shared/popup-dialog/popup-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { BillPageComponent } from './components/e3dad/bill-page/bill-page.component';
+import { DeniedBillsComponent } from './components/e3dad/denied-bills/denied-bills.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { EditBillComponent } from './components/e3dad/edit-bill/edit-bill.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -52,6 +63,12 @@ import { PolicyListComponent } from './components/e3dad/policy-list/policy-list.
     HomeComponent,
     E3dadComponent,
     PolicyListComponent,
+    EditPolicyComponent,
+    PopupDialogComponent,
+    AdminDashboardComponent,
+    BillPageComponent,
+    DeniedBillsComponent,
+    EditBillComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +76,17 @@ import { PolicyListComponent } from './components/e3dad/policy-list/policy-list.
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule,
+    MatIconModule,
+    MatTableModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

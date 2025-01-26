@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './sea-management.component.html',
   styleUrls: ['./sea-management.component.scss']
 })
+
 export class SeaManagementComponent implements OnInit {
   ships: Ship[] = [];
   selectedShipName: string = '';
@@ -19,9 +20,9 @@ export class SeaManagementComponent implements OnInit {
   flag: string = '';
   maxDive: number = 0;
   // Other form fields (not related to ship selection)
-  agent: string = '';
-  callSign: string = '';
-  totalWeight: number = 0;
+  // agent: string = '';
+  // callSign: string = '';
+  // totalWeight: number = 0;
   netWeight: number = 0;
   crewNumber: number = 0;
   crewNationality: string = '';
@@ -65,21 +66,23 @@ export class SeaManagementComponent implements OnInit {
   onShipSelect(event: any) {
     const selectedShip = this.ships.find(ship => ship.shipName === this.selectedShipName);
     if (selectedShip) {
+      this.shipName = selectedShip.shipName; // Update the shipName field
       this.owner = selectedShip.owner;
       this.captainName = selectedShip.captainName;
       this.flag = selectedShip.flag;
       this.maxDive = selectedShip.maxDive;
     }
   }
+  
 
   onSubmit() {
     const shipArrivalData = {
       shipName: this.shipName,
       owner: this.owner,
-      agent: this.agent,
-      callSign: this.callSign,
+      // agent: this.agent,
+      // callSign: this.callSign,
       flag: this.flag,
-      totalWeight: this.totalWeight,
+      // totalWeight: this.totalWeight,
       netWeight: this.netWeight,
       maxDive: this.maxDive,
       crewNumber: this.crewNumber,
@@ -114,10 +117,10 @@ export class SeaManagementComponent implements OnInit {
   clearForm() {
     this.shipName = '';
     this.owner = '';
-    this.agent = '';
-    this.callSign = '';
+    // this.agent = '';
+    // this.callSign = '';
     this.flag = '';
-    this.totalWeight = 0;
+    // this.totalWeight = 0;
     this.netWeight = 0;
     this.maxDive = 0;
     this.crewNumber = 0;

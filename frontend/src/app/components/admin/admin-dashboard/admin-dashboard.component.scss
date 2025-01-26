@@ -1,0 +1,154 @@
+.admin-dashboard-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  direction: rtl; /* For right-to-left alignment */
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.admin-dashboard-container h1 {
+  font-size: 28px;
+  color: #3f51b5; /* Primary theme color */
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.services-section {
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.services-section h2 {
+  font-size: 24px;
+  color: #4caf50; /* Secondary color for sections */
+  margin-bottom: 16px;
+  text-align: center;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 8px;
+}
+
+.price-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 calc(50% - 16px); /* Adjusts to two columns per row */
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #3f51b5; /* Label color */
+}
+
+.form-group select,
+.form-group input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  border-color: #4caf50; /* Focus color */
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4caf50; /* Green for success */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3f51b5; /* Primary button color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #303f9f;
+}
+
+.price-list {
+  margin-top: 16px;
+}
+
+.price-list h3 {
+  font-size: 20px;
+  color: #4caf50;
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+table th,
+table td {
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f1f1f1;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .form-group {
+    flex: 1 1 100%; /* Full width for small screens */
+  }
+
+  .price-form {
+    gap: 12px;
+  }
+}

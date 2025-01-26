@@ -13,26 +13,31 @@ export class AddShipComponent {
   owner: string = '';
   flag: string = '';
   maxDive: number | null = null;
-  shipNumber: string = '';
+  // shipNumber: string = '';
+  // shippingPort: string = '';
+  bayanNumber: string = '';
 
   constructor(private seaManagementService: SeaManagementService, private router: Router) { }
 
   addShip() {
-    if (this.shipName && this.owner && this.flag && this.maxDive && this.shipNumber) {
+    if (this.shipName && this.owner && this.flag && this.maxDive && this.bayanNumber) {
       const newShip = {
         shipName: this.shipName,
         captainName: this.captainName,
         owner: this.owner,
         flag: this.flag,
         maxDive: this.maxDive,
-        shipNumber: this.shipNumber
+        // shipNumber: this.shipNumber,
+        // shippingPort: this.shippingPort,
+        bayanNumber: this.bayanNumber // Add Bayan Number here
       };
-
+  
       console.log("new ship", newShip);
-
-
+  
       this.seaManagementService.addShip(newShip).subscribe(
         (response) => {
+          console.log("Response",response);
+          
           if (response.success) {
             alert('Ship added successfully!');
             this.clearForm();
@@ -49,6 +54,7 @@ export class AddShipComponent {
       alert('Please fill in all the required fields.');
     }
   }
+  
 
   clearForm() {
     this.shipName = '';

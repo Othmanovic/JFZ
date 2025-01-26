@@ -23,12 +23,15 @@ export class PolicyDetailsComponent implements OnInit {
 
   fetchPolicies(): void {
     this.adminService.getShipPolicy(this.shipId).subscribe(
-      (data) => {
-        this.policies = data.policy; // Expecting `data` to be an array of policies
+      (response) => {
+        // Access the 'policies' key from the response
+        this.policies = response.policies; 
+        console.log("Policies: ", this.policies); // For debugging
       },
       (error) => {
         console.error('Error fetching policies:', error);
       }
     );
   }
+  
 }

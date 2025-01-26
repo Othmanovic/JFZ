@@ -1,1 +1,25 @@
-<p>Finance works!</p>
+<div class="main-content">
+  <h2>الفواتير المقبولة</h2>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>رقم الفاتورة</th>
+        <th>المستلم</th>
+        <th>وصف البضائع</th>
+        <th>المبلغ</th>
+        <th>رقم السفينة</th>
+        <th>التاريخ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of bills">
+        <td>{{ bill.billNumber }}</td>
+        <td>{{ bill.receiver }}</td>
+        <td>{{ bill.goodsDescription }}</td>
+        <td>{{ bill.billAmount }}</td>
+        <td>{{ bill.shipId }}</td>
+        <td>{{ bill.createdAt | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

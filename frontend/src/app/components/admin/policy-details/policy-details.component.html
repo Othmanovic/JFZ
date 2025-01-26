@@ -14,6 +14,8 @@
           <th>التبريد</th>
           <th>مشتركة</th>
           <th>نوع الشحنة</th>
+          <th>نوع الحاوية</th>
+          <th>تعديل</th>
         </tr>
       </thead>
       <tbody>
@@ -27,7 +29,11 @@
           <td>{{ policy.goodsSize }}</td>
           <td>{{ policy.cooling }}</td>
           <td>{{ policy.isShared ? 'نعم' : 'لا' }}</td>
+          <td>{{ policy.containerType }}</td>
           <td>{{ policy.shipmentType }}</td>
+          <td>
+            <button [routerLink]="['/edit-policy', policy._id]">تعديل</button>
+          </td>
         </tr>
       </tbody>
     </table>

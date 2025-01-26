@@ -17,7 +17,6 @@
     </tbody>
   </table>
 
-  <!-- Policies Section -->
   <div *ngIf="selectedShipPolicies.length > 0; else noPolicy">
     <h2>بوالص السفينة: {{ selectedShipName }}</h2>
     <table class="custom-table">
@@ -33,6 +32,8 @@
           <th>التبريد</th>
           <th>مشتركة</th>
           <th>نوع الشحنة</th>
+          <th>نوع الحاوية</th>
+          <th>الفاتورة</th>
         </tr>
       </thead>
       <tbody>
@@ -46,10 +47,21 @@
           <td>{{ policy.goodsSize }}</td>
           <td>{{ policy.cooling }}</td>
           <td>{{ policy.isShared ? 'نعم' : 'لا' }}</td>
+          <td>{{ policy.containerType }}</td>
           <td>{{ policy.shipmentType }}</td>
+          <td>
+            <button *ngIf="!policy.bill" (click)="calculateBill(policy)">حساب الفاتورة</button>
+            <span *ngIf="policy.bill">
+              المبلغ: {{ policy.bill }}
+              <button (click)="generateInvoiceForPolicy(policy)">عرض الفاتورة</button>
+            </span>
+          </td>
+
         </tr>
       </tbody>
+
     </table>
+    <!-- <button (click)="generateInvoice()">إنشاء وطباعة الفاتورة</button> -->
   </div>
 
   <ng-template #noPolicy>

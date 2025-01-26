@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="bills" class="mat-elevation-z8 custom-table">
+  <!-- Bill Number Column -->
+  <ng-container matColumnDef="billNumber">
+    <th mat-header-cell *matHeaderCellDef> رقم الفاتورة </th>
+    <td mat-cell *matCellDef="let bill"> {{ bill.billNumber }} </td>
+  </ng-container>
+
+  <!-- Receiver Column -->
+  <ng-container matColumnDef="receiver">
+    <th mat-header-cell *matHeaderCellDef> المستلم </th>
+    <td mat-cell *matCellDef="let bill"> {{ bill.receiver }} </td>
+  </ng-container>
+
+  <!-- Goods Description Column -->
+  <ng-container matColumnDef="goodsDescription">
+    <th mat-header-cell *matHeaderCellDef> وصف البضائع </th>
+    <td mat-cell *matCellDef="let bill"> {{ bill.goodsDescription }} </td>
+  </ng-container>
+
+  <!-- Bill Amount Column -->
+  <ng-container matColumnDef="billAmount">
+    <th mat-header-cell *matHeaderCellDef> المبلغ </th>
+    <td mat-cell *matCellDef="let bill"> {{ bill.billAmount | currency:'SAR':'symbol':'1.0-2' }} </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> الإجراءات </th>
+    <td mat-cell *matCellDef="let bill">
+      <button mat-button class="custom-button primary" (click)="editBill(bill)">تعديل</button>
+      <button mat-button class="custom-button warn" (click)="deleteBill(bill)">حذف</button>
+    </td>
+  </ng-container>
+
+  <!-- Header and Row Definitions -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,0 +1,50 @@
+::ng-deep .custom-table {
+  width: 100%;
+  border: 1px solid #ddd;
+  text-align: right; /* Align text to the right for Arabic */
+
+  th.mat-header-cell {
+    background-color: #4caf50; /* Green header row */
+    color: white;
+    font-weight: bold;
+    text-align: center; /* Center text in header cells */
+  }
+
+  td.mat-cell {
+    text-align: right; /* Align text to the right for content */
+    padding: 10px;
+  }
+
+  .custom-button {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .custom-button.primary {
+    color: white;
+    background-color: #1976d2;
+    border-color: #1976d2;
+  }
+
+  .custom-button.primary:hover {
+    background-color: #1565c0;
+    border-color: #1565c0;
+  }
+
+  .custom-button.warn {
+    color: white;
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+  }
+
+  .custom-button.warn:hover {
+    background-color: #c62828;
+    border-color: #c62828;
+  }
+}

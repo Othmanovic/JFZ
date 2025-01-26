@@ -1,0 +1,41 @@
+.bills-container {
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead tr {
+  background-color: #f4f4f4;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.loading, .no-bills {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+}

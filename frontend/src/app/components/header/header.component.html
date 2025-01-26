@@ -75,6 +75,12 @@
         <span class="menu-text">Admin panel</span>
       </a>
     </li>
+    <li *ngIf="userRole === 'admin'">
+      <a routerLink="/admin/dashboard" routerLinkActive="active">
+        <span class="menu-icon material-icons">dashboard</span>
+        <span class="menu-text">Dashboard</span>
+      </a>
+    </li>
 
     <li *ngIf="userRole === 'e3dad'">
       <a routerLink="/e3dad" routerLinkActive="active">
@@ -82,6 +88,20 @@
         <span class="menu-text">الإعداد</span>
       </a>
     </li> 
+
+    <li *ngIf="userRole === 'e3dad'">
+      <a routerLink="/e3dad/denied-bills" routerLinkActive="active">
+        <span class="menu-icon material-icons">cancel</span>
+        <span class="menu-text">الفواتير المرفوضة</span>
+      </a>
+    </li>
+
+    <li *ngIf="userRole === 'finance'">
+      <a routerLink="/finance" routerLinkActive="active">
+        <span class="menu-icon material-icons">account_balance</span>
+        <span class="menu-text">المالية</span>
+      </a>
+    </li>
 
     <!-- <li>
       <a routerLink="/timetable" routerLinkActive="active">

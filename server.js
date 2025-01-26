@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-dotenv.config({path: './config/config.env'})
+dotenv.config({ path: './config/config.env' })
 
 const mongoURI = 'mongodb://127.0.0.1:27017/jfz'; // Replace with your MongoDB URI
 
@@ -39,12 +39,14 @@ const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
 const seaManagementRoutes = require('./routes/sea-management');
 const admin = require('./routes/admin');
+const bill = require('./routes/bill');
 
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/sea-management', seaManagementRoutes);
 app.use('/api/admin', admin);
+app.use('/api/bill', bill);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

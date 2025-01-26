@@ -19,6 +19,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { E3dadComponent } from './components/e3dad/e3dad.component';
 import { PolicyListComponent } from './components/e3dad/policy-list/policy-list.component';
+import { EditPolicyComponent } from './components/admin/edit-policy/edit-policy.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { BillPageComponent } from './components/e3dad/bill-page/bill-page.component';
+import { DeniedBillsComponent } from './components/e3dad/denied-bills/denied-bills.component';
+import { EditBillComponent } from './components/e3dad/edit-bill/edit-bill.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +52,10 @@ const routes: Routes = [
   {
     path: 'admin/policy-details/:id', component: PolicyDetailsComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard]
+  },
+  { path: 'edit-policy/:id', component: EditPolicyComponent },
 
 
   { path: 'handling_management', component: HandlingManagementComponent, canActivate: [AuthGuard], },
@@ -56,6 +65,11 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], },
   { path: 'e3dad', component: E3dadComponent, canActivate: [AuthGuard] },
   { path: 'e3dad/ships/:id/policies', component: PolicyListComponent, canActivate: [AuthGuard] },
+  { path: 'e3dad/denied-bills', component: DeniedBillsComponent },
+  { path: 'edit-bill/:id', component: EditBillComponent },
+
+
+  { path: 'bill', component: BillPageComponent },
 
 
 

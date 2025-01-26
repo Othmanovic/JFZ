@@ -1,0 +1,82 @@
+<div class="admin-dashboard-container">
+  <h1>لوحة تحكم المسؤول</h1>
+
+  <section class="services-section">
+    <h2>إدارة الأسعار للخدمات</h2>
+    <form class="price-form" (ngSubmit)="savePrice()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="shipmentType">نوع الخدمة</label>
+          <select id="shipmentType" [(ngModel)]="price.shipmentType" name="shipmentType" required>
+            <option value="عوائد مناولة">عوائد مناولة</option>
+            <option value="تخزين">تخزين</option>
+            <option value="شحن">شحن</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="containerType">نوع الحاوية</label>
+          <select id="containerType" [(ngModel)]="price.containerType" name="containerType" required>
+            <option value="حاويات تفريغ">حاويات تفريغ</option>
+            <option value="حاويات تصدير معباة">حاويات تصدير معباة</option>
+            <option value="حاويات تصدير فارغ">حاويات تصدير فارغ</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="containerSize">حجم الحاوية</label>
+          <input type="number" id="containerSize" [(ngModel)]="price.containerSize" name="containerSize" required />
+        </div>
+
+        <div class="form-group">
+          <label for="calculationMethod">طريقة الحساب</label>
+          <select id="calculationMethod" [(ngModel)]="price.calculationMethod" name="calculationMethod" required>
+            <option value="amount">حسب العدد</option>
+            <option value="volume">حسب الحجم</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="price.calculationMethod === 'volume'">
+          <label for="volume">سعر الحجم</label>
+          <input type="number" id="volume" [(ngModel)]="price.volume" name="volume" />
+        </div>
+        <div class="form-group">
+          <label for="price">السعر لكل حاوية</label>
+          <input type="number" id="price" [(ngModel)]="price.pricePerContainer" name="price" required />
+        </div>
+
+        <div class="form-group">
+          <button type="submit">إضافة/تعديل السعر</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="price-list">
+      <h3>قائمة الأسعار</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>نوع الخدمة</th>
+            <th>نوع الحاوية</th>
+            <th>حجم الحاوية</th>
+            <th>طريقة الحساب</th>
+            <th>السعر لكل حاوية</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of prices">
+            <td>{{ item.shipmentType }}</td>
+            <td>{{ item.containerType }}</td>
+            <td>{{ item.containerSize }}</td>
+            <td>{{ item.calculationMethod === 'volume' ? 'حسب الحجم' : 'حسب العدد' }}</td>
+            <td>{{ item.pricePerContainer }}</td>
+            <td>
+              <button (click)="editPrice(item)">تعديل</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -8,20 +8,11 @@ const ShipSchema = new mongoose.Schema({
   captainName: { type: String, required: true },
   shippingPort: { type: String },
   shipNumber: { type: String },
-  policy: [
-    {
-      billNumber: String,
-      receiver: String,
-      goodsDescription: String,
-      containerNumber: String,
-      weight: Number,
-      containerSize: String,
-      goodsSize: String,
-      cooling: String,
-      isShared: Boolean,
-      shipmentType: String,
-    },
-  ],
+  bayanNumber: { type: String },
+  startWorkingDate: { type: Date }, // New field for start working date
+  policies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Policy' }],
 });
+
+
 
 module.exports = mongoose.model('Ship', ShipSchema);

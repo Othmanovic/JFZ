@@ -1,0 +1,61 @@
+<div class="main-content">
+  <h2>تعديل الفاتورة</h2>
+  <form (ngSubmit)="updateBill()" class="form-container">
+    <div class="field-group">
+      <label for="billNumber">رقم الفاتورة</label>
+      <input
+        type="text"
+        id="billNumber"
+        [(ngModel)]="bill.billNumber"
+        name="billNumber"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="receiver">المستلم</label>
+      <input
+        type="text"
+        id="receiver"
+        [(ngModel)]="bill.receiver"
+        name="receiver"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsDescription">وصف البضائع</label>
+      <input
+        type="text"
+        id="goodsDescription"
+        [(ngModel)]="bill.goodsDescription"
+        name="goodsDescription"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="billAmount">المبلغ</label>
+      <input
+        type="number"
+        id="billAmount"
+        [(ngModel)]="bill.billAmount"
+        name="billAmount"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="shipId">رقم السفينة</label>
+      <input
+        type="text"
+        id="shipId"
+        [(ngModel)]="bill.shipId"
+        name="shipId"
+        required
+      />
+    </div>
+
+    <button type="submit" class="submit-button">تحديث</button>
+  </form>
+</div>

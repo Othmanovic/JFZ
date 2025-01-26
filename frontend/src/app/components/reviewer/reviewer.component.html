@@ -1,1 +1,39 @@
-<p>reviewer works!</p>
+<div class="bills-container">
+  <h1>Review Bills</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bill Number</th>
+        <th>Receiver</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Ship ID</th>
+        <th>Accept</th>
+        <th>Deny</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of bills">
+        <td>{{ bill.billNumber }}</td>
+        <td>{{ bill.receiver }}</td>
+        <td>{{ bill.goodsDescription }}</td>
+        <td>{{ bill.billAmount }}</td>
+        <td>{{ bill.shipId }}</td>
+        <td>
+          <button (click)="acceptBill(bill._id)" class="btn btn-success">Accept</button>
+        </td>
+        <td>
+          <button (click)="denyBill(bill._id)" class="btn btn-danger">Deny</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="loading" class="loading">
+    Loading bills...
+  </div>
+  <div *ngIf="!loading && bills.length === 0" class="no-bills">
+    No bills to review.
+  </div>
+</div>

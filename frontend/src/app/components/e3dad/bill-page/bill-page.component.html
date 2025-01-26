@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="title">
+    <img src="../../../../assets/logo.png" alt="Juliana Free Zone Logo" />
+  </div>
+  <h1>فاتورة شحن</h1>
+  <div class="info">
+    <div class="row">
+      <p><strong>التاريخ:</strong> {{ today | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>رقم البوليصة:</strong> {{ policy.billNumber }}</p>
+    </div>
+    <div class="row">
+      <p><strong>اسم المستلم:</strong> {{ policy.receiver }}</p>
+      <p><strong>وصف البضاعة:</strong> {{ policy.goodsDescription }}</p>
+    </div>
+    <div class="row">
+      <p><strong>الفاتورة:</strong> {{ policy.bill || 'غير متوفرة' }}</p>
+    </div>
+  </div>
+  <button (click)="printPage()">طباعة الفاتورة</button>
+  <button (click)="saveBill()">Save Bill</button>
+
+</div>

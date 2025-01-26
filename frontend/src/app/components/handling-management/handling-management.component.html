@@ -1,1 +1,42 @@
-<p>handling-management works!</p>
+<div class="container">
+  <h2>Handling Management</h2>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by Bayan Number"
+    />
+  </div>
+
+  <!-- Ship List -->
+  <div class="ship-list">
+    <div
+      class="ship-card"
+      *ngFor="let ship of filteredShips()"
+      (click)="selectShip(ship)"
+    >
+      <h3>{{ ship.shipName }}</h3>
+      <p><strong>Owner:</strong> {{ ship.owner }}</p>
+      <p><strong>Bayan Number:</strong> {{ ship.bayanNumber }}</p>
+    </div>
+  </div>
+
+  <!-- Selected Ship Details -->
+  <div *ngIf="selectedShip" class="ship-details">
+    <h3>{{ selectedShip.shipName }}</h3>
+    <p><strong>Owner:</strong> {{ selectedShip.owner }}</p>
+    <p><strong>Flag:</strong> {{ selectedShip.flag }}</p>
+    <p><strong>Bayan Number:</strong> {{ selectedShip.bayanNumber }}</p>
+
+    <!-- Start Working Date -->
+    <label for="startWorkingDate">Start Working Date:</label>
+    <input
+      type="date"
+      id="startWorkingDate"
+      [(ngModel)]="startWorkingDate"
+    />
+    <button (click)="saveStartWorkingDate()">Save Start Working Date</button>
+  </div>
+</div>

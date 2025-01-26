@@ -1,0 +1,20 @@
+.popup-container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &.success {
+    background-color: #f0fdf4; /* Light green */
+    color: #16a34a; /* Green */
+  }
+
+  &.error {
+    background-color: #fef2f2; /* Light red */
+    color: #dc2626; /* Red */
+  }
+}
+
+button {
+  margin-top: 15px;
+}

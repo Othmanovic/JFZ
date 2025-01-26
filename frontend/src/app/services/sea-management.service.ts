@@ -11,6 +11,8 @@ export class SeaManagementService {
   private apiUrl = 'http://localhost:3000/api/sea-management'; // Adjust the URL to your API
 
   constructor(private http: HttpClient) { }
+
+  
   saveShipArrival(shipArrivalData: any): Observable<any> {
     let token = localStorage.getItem('id_token');
     if (!token) {
@@ -21,6 +23,9 @@ export class SeaManagementService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token.split(' ')[1]}`
     });
+
+    console.log("Ship arrival: ", shipArrivalData);
+    
 
     return this.http.post(this.apiUrl, shipArrivalData, { headers });
   }
@@ -35,7 +40,7 @@ export class SeaManagementService {
       'Authorization': `Bearer ${token.split(' ')[1]}`
     });
 
-    return this.http.get<ShipArrival[]>(`${this.apiUrl}/ship-arrivals-history`, { headers });
+    return this.http.get<ShipArrival[]>(`${this.apiUrl}/ships`, { headers });
   }
 
   // Method to get details of a specific ship arrival by ID
@@ -101,5 +106,20 @@ export class SeaManagementService {
   getPoliciesForShip(shipId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/ships/${shipId}/policies`);
   }
+
+  updateShip(ship: Ship): Observable<any> {
+    const token = localStorage.getItem('id_token');
+    if (!token) {
+      throw new Error('Token not found in local storage');
+    }
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token.split(' ')[1]}`,
+    });
+  
+    return this.http.put(`${this.apiUrl}/update-ship`, ship, { headers });
+  }
+  
 
 }

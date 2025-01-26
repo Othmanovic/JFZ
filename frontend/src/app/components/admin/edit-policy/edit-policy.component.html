@@ -1,0 +1,115 @@
+<div class="main-content">
+  <h2>تعديل بوليصة</h2>
+  <form (ngSubmit)="updatePolicy()" class="form-container">
+    <div class="field-group">
+      <label for="billNumber">رقم البوليصة</label>
+      <input
+        type="text"
+        id="billNumber"
+        [(ngModel)]="policy.billNumber"
+        name="billNumber"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="receiver">المستلم</label>
+      <input
+        type="text"
+        id="receiver"
+        [(ngModel)]="policy.receiver"
+        name="receiver"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsDescription">وصف البضاعة</label>
+      <input
+        type="text"
+        id="goodsDescription"
+        [(ngModel)]="policy.goodsDescription"
+        name="goodsDescription"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="containerNumber">رقم الحاوية</label>
+      <input
+        type="text"
+        id="containerNumber"
+        [(ngModel)]="policy.containerNumber"
+        name="containerNumber"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="weight">الوزن</label>
+      <input
+        type="number"
+        id="weight"
+        [(ngModel)]="policy.weight"
+        name="weight"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="containerSize">حجم الحاوية</label>
+      <input
+        type="text"
+        id="containerSize"
+        [(ngModel)]="policy.containerSize"
+        name="containerSize"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsSize">حجم البضاعة</label>
+      <input
+        type="text"
+        id="goodsSize"
+        [(ngModel)]="policy.goodsSize"
+        name="goodsSize"
+        required
+      />
+    </div>
+
+    <div class="field-group">
+      <label for="cooling">التبريد</label>
+      <input
+        type="text"
+        id="cooling"
+        [(ngModel)]="policy.cooling"
+        name="cooling"
+        required
+      />
+    </div>
+
+    <div class="checkbox-group">
+      <input
+        type="checkbox"
+        id="isShared"
+        [(ngModel)]="policy.isShared"
+        name="isShared"
+      />
+      <label for="isShared">مشتركة</label>
+    </div>
+
+    <div class="field-group">
+      <label for="shipmentType">نوع الشحنة ووصفها</label>
+      <input
+        type="text"
+        id="shipmentType"
+        [(ngModel)]="policy.shipmentType"
+        name="shipmentType"
+        required
+      />
+    </div>
+
+    <button type="submit" class="submit-button">تحديث</button>
+  </form>
+</div>

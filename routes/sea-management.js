@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const SeaManagement = require('../models/SeaManagement');
 const Ship = require('../models/Ship');
+const Policy = require('../models/Policy');
 const authMiddleware = require('../middleware/auth');
 
 // router.post('/sea-management', async (req, res) => {
@@ -39,6 +40,8 @@ router.post('/sea-management', authMiddleware, async (req, res, next) => {
   });
   try {
     await seaManagement.save();
+    console.log("Sea management: ",seaManagement);
+    
     res.status(201).json({ success: true, message: 'Sea Management saved successfully' });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Error saving Sea Management data' });
@@ -47,19 +50,21 @@ router.post('/sea-management', authMiddleware, async (req, res, next) => {
 
 
 // Get all ship arrivals
-router.get('/ship-arrivals-history', authMiddleware, async (req, res) => {
-  try {
-    const shipArrivals = await Ship.find(); // Fetch all records
-    res.json(shipArrivals);
-  } catch (err) {
-    res.status(500).json({ message: 'Error fetching ship arrivals', error: err });
-  }
-});
+// router.get('/ship-arrivals-history', authMiddleware, async (req, res) => {
+//   try {
+//     const shipArrivals = await Ship.find(); // Fetch all records
+//     res.json(shipArrivals);
+//   } catch (err) {
+//     res.status(500).json({ message: 'Error fetching ship arrivals', error: err });
+//   }
+// });
 
 // Route to get ship arrival details by ID
 router.get('/ship-arrival-details/:id', authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("ship arrival", id);
+
     const shipArrival = await SeaManagement.findById(id);
 
     if (!shipArrival) {
@@ -75,7 +80,7 @@ router.get('/ship-arrival-details/:id', authMiddleware, async (req, res) => {
 
 
 router.post('/add-ship', authMiddleware, async (req, res) => {
-  const { shipName, captainName, owner, flag, maxDive } = req.body;
+  const { shipName, captainName, owner, flag, maxDive, bayanNumber } = req.body;
 
   try {
     const newShip = new Ship({
@@ -83,7 +88,8 @@ router.post('/add-ship', authMiddleware, async (req, res) => {
       captainName,
       owner,
       flag,
-      maxDive
+      maxDive,
+      bayanNumber
     });
 
     await newShip.save();
@@ -132,17 +138,38 @@ router.put('/ships/:id/generate-number', async (req, res) => {
 
 // Get policies for a specific ship
 router.get('/ships/:id/policies', async (req, res) => {
+  const { id } = req.params;
+  console.log("ship id: ", id);
+
   try {
-    const { id } = req.params;
-    const ship = await Ship.findById(id);
-    if (!ship) {
-      return res.status(404).json({ message: 'Ship not found' });
-    }
-    res.status(200).json(ship.policy); // Return the array of policies
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    const policies = await Policy.find({ ship: id }); // Fetch policies tied to the ship
+    console.log("policies", policies);
+
+    res.status(200).json(policies);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error fetching policies' });
   }
 });
+
+router.put('/update-ship', authMiddleware, async (req, res) => {
+  const { _id, startWorkingDate } = req.body;
+
+  try {
+    const ship = await Ship.findById(_id);
+    if (!ship) {
+      return res.status(404).json({ success: false, message: 'Ship not found' });
+    }
+
+    ship.startWorkingDate = startWorkingDate;
+    await ship.save();
+
+    res.status(200).json({ success: true, message: 'Start working date updated successfully' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Error updating ship' });
+  }
+});
+
 
 
 

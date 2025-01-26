@@ -1,8 +1,14 @@
+import { Policy } from "./policy";
+
 export interface Ship {
   shipName: string;
-  captainName: string;
   owner: string;
   flag: string;
+  captainName: string;
   maxDive: number;
-  shipNumber: string;
+  shippingPort?: string;
+  shipNumber?: string;
+  bayanNumber?: string;
+  policies?: Policy[];
+  startWorkingDate?: Date; // Optional field for start working date
 }
