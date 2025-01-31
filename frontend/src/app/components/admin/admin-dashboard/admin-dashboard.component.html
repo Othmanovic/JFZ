@@ -6,11 +6,36 @@
     <form class="price-form" (ngSubmit)="savePrice()">
       <div class="form-row">
         <div class="form-group">
-          <label for="shipmentType">نوع الخدمة</label>
-          <select id="shipmentType" [(ngModel)]="price.shipmentType" name="shipmentType" required>
+          <label for="calculationMethod">طريقة الحساب</label>
+          <select id="calculationMethod" [(ngModel)]="price.calculationMethod" name="calculationMethod" required>
+            <option value="amount">حسب العدد</option>
+            <option value="volume">حسب الحجم</option>
+            <option value="pouring">بضائع الصب</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="serviceType">نوع الخدمة</label>
+          <select id="serviceType" [(ngModel)]="price.serviceType" name="serviceType" required>
             <option value="عوائد مناولة">عوائد مناولة</option>
-            <option value="تخزين">تخزين</option>
-            <option value="شحن">شحن</option>
+            <option value="تخزين مكشوف">تخزين مكشوف</option>
+            <option value="تخزين مغطى">تخزين مغطى</option>
+            <option value="عوائد الانتفاع بالآلات الشوكية واللواقط">عوائد الانتفاع بالآلات الشوكية واللواقط</option>
+            <option value="عوائد الانتفاع بمعدات التفريغ">عوائد الانتفاع بمعدات التفريغ</option>
+            <option value="عوائد الانتفاع بالميزان">عوائد الانتفاع بالميزان</option>
+            <option value="عوائد الانتفاع بالروافع الارضية">عوائد الانتفاع بالروافع الارضية</option>
+            <option value="عوائد الانتفاع بالروافع الارضية">عوائد الانتفاع بالروافع الارضية</option>
+            <option value="عوائد حراسة البضائع">عوائد حراسة البضائع</option>
+            <option value="عوائد فرز البضائع">عوائد فرز البضائع</option>
+            <option value="عوائد التزود بالكهرباء">عوائد التزود بالكهرباء</option>
+            <option value="عوائد بقاء المركبات">عوائد بقاء المركبات</option>
+            <option value="عوائد النقل الداخلي">عوائد النقل الداخلي</option>
+            <option value="عوائد تحجيم البضائع">عوائد تحجيم البضائع</option>
+            <option value="عوائد وضع العلامات وشطبها وتصحيحها">عوائد وضع العلامات وشطبها وتصحيحها</option>
+            <option value="عوائد الغرمات والتعطيل">عوائد الغرمات والتعطيل</option>
+            <option value="عوائد الرصيف">عوائد الرصيف</option>
+            <option value="عوائد فتح كرشم">عوائد فتح كرشم</option>
+            <option value="عوائد أخرى">عوائد أخرى</option>
           </select>
         </div>
 
@@ -19,7 +44,17 @@
           <select id="containerType" [(ngModel)]="price.containerType" name="containerType" required>
             <option value="حاويات تفريغ">حاويات تفريغ</option>
             <option value="حاويات تصدير معباة">حاويات تصدير معباة</option>
-            <option value="حاويات تصدير فارغ">حاويات تصدير فارغ</option>
+            <option value="حاويات تصدير معباة">حاويات تصدير فارغ</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="القمح">القمح</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="شعير">شعير</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="اسمنت سائب">اسمنت سائب</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="اسمنت مكيس">اسمنت مكيس</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="سكر">سكر</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="قطران">قطران</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="ابقار">ابقار</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="اغنام">اغنام</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="سيارات">سيارات</option>
+            <option *ngIf="price.calculationMethod == 'pouring'" value="شاحنات">شاحنات</option>
           </select>
         </div>
 
@@ -29,11 +64,8 @@
         </div>
 
         <div class="form-group">
-          <label for="calculationMethod">طريقة الحساب</label>
-          <select id="calculationMethod" [(ngModel)]="price.calculationMethod" name="calculationMethod" required>
-            <option value="amount">حسب العدد</option>
-            <option value="volume">حسب الحجم</option>
-          </select>
+          <label for="containerSize">الوزن</label>
+          <input type="number" id="containerSize" [(ngModel)]="price.weight" name="containerSize" required />
         </div>
 
         <div class="form-group" *ngIf="price.calculationMethod === 'volume'">

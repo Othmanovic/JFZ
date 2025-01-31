@@ -69,7 +69,6 @@ export class AdminDashboardComponent implements OnInit {
     
     this.adminService.savePrice(this.price).subscribe(
       (response) => {
-        console.log('Price saved successfully:', response);
         this.openDialog('Success', 'The price has been updated successfully!', 'success');
         this.router.navigate(['/admin']);
       },

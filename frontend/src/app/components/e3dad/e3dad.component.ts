@@ -67,6 +67,9 @@ export class E3dadComponent implements OnInit {
         } else if (price.calculationMethod === 'volume') {
           policy.bill = price.pricePerContainer * parseFloat(policy.containerSize);
         }
+         else if (price.calculationMethod === 'pouring') {
+          policy.bill = price.pricePerContainer * policy.weight;
+        }
         this.openDialog('Success', 'The bill has been calculated successfully!', 'success');
       },
       (error) => {

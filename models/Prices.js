@@ -13,13 +13,17 @@ const priceSchema = new mongoose.Schema({
     type: Number,
     required: true, // e.g., 38.5, 77
   },
+  weight: {
+    type: Number,
+    required: true,
+  },
   pricePerContainer: {
     type: Number,
     required: true, // e.g., 375, 750
   },
   calculationMethod: {
     type: String,
-    enum: ['amount', 'volume'], // Only "amount" or "volume" is allowed
+    enum: ['amount', 'volume', 'pouring'], // Only "amount" or "volume" is allowed
     required: true,
   },
   volume: {

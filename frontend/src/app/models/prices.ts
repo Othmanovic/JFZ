@@ -3,6 +3,7 @@ export interface Price {
   containerType: string; // Same as in Policy model
   containerSize: number; // Use number type for easy comparison
   pricePerContainer: number;
-  calculationMethod: 'amount' | 'volume'; // Dropdown selection
+  weight?: number;
+  calculationMethod: 'amount' | 'volume' | 'pouring'; // Dropdown selection
   volume?: number; // Optional, only needed for 'volume'
 }

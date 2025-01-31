@@ -84,12 +84,13 @@ router.put('/policies/:id', async (req, res) => {
 
 router.post('/prices', async (req, res) => {
   try {
-    const { shipmentType, containerType, containerSize, pricePerContainer, calculationMethod, volume } = req.body;
+    const { shipmentType, containerType, containerSize, pricePerContainer, calculationMethod, volume, weight } = req.body;
 
     const newPrice = new Price({
       shipmentType,
       containerType,
       containerSize,
+      weight,
       pricePerContainer,
       calculationMethod,
       volume: calculationMethod === 'volume' ? volume : 0,
@@ -104,7 +105,10 @@ router.post('/prices', async (req, res) => {
 });
 
 router.get('/price', async (req, res) => {
+  
   const { shipmentType, containerSize, containerType } = req.query;
+console.log("Query", shipmentType, containerSize, containerType );
+
 
   try {
     const price = await Price.findOne({
@@ -112,6 +116,7 @@ router.get('/price', async (req, res) => {
       containerSize: parseFloat(containerSize),
       containerType,
     });
+console.log("price",price);
 
     if (!price) {
       return res.status(404).json({ message: 'Price not found' });
