@@ -15,6 +15,7 @@ export class AdminDashboardComponent implements OnInit {
   prices: Price[] = [];
   price: Price = {
     shipmentType: '',
+    serviceType: '',
     containerType: '',
     containerSize: 0,
     calculationMethod: 'amount', // Default to "amount"
@@ -101,6 +102,7 @@ export class AdminDashboardComponent implements OnInit {
   resetForm(): void {
     this.price = {
       shipmentType: '',
+      serviceType: '',
       containerType: '',
       containerSize: 0,
       pricePerContainer: 0,

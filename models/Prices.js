@@ -5,6 +5,10 @@ const priceSchema = new mongoose.Schema({
     type: String,
     required: true, // e.g., "عوائد مناولة"
   },
+  serviceType: {
+    type: String,
+    required: true,
+  },
   containerType: {
     type: String,
     required: true, // e.g., "حاويات تفريغ", "حاويات تصدير معباة"

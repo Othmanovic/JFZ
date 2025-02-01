@@ -106,13 +106,13 @@ router.post('/prices', async (req, res) => {
 
 router.get('/price', async (req, res) => {
   
-  const { shipmentType, containerSize, containerType } = req.query;
-console.log("Query", shipmentType, containerSize, containerType );
+  const { serviceType, containerSize, containerType } = req.query;
+console.log("Query", serviceType, containerSize, containerType );
 
 
   try {
     const price = await Price.findOne({
-      shipmentType,
+      serviceType,
       containerSize: parseFloat(containerSize),
       containerType,
     });

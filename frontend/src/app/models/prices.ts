@@ -1,5 +1,6 @@
 export interface Price {
   shipmentType: string; // Same as in Policy model
+  serviceType: string;
   containerType: string; // Same as in Policy model
   containerSize: number; // Use number type for easy comparison
   pricePerContainer: number;

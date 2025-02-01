@@ -48,7 +48,7 @@
           <td>{{ policy.cooling }}</td>
           <td>{{ policy.isShared ? 'نعم' : 'لا' }}</td>
           <td>{{ policy.containerType }}</td>
-          <td>{{ policy.shipmentType }}</td>
+          <td>{{ policy.serviceType }}</td>
           <td>
             <button *ngIf="!policy.bill" (click)="calculateBill(policy)">حساب الفاتورة</button>
             <span *ngIf="policy.bill">

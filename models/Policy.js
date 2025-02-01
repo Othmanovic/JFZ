@@ -11,6 +11,7 @@ const policySchema = new mongoose.Schema({
   cooling: String,
   isShared: Boolean,
   shipmentType: String,
+  serviceType: String,
   containerType: String, // Add this field
   ship: { type: mongoose.Schema.Types.ObjectId, ref: 'Ship' },
   bill: Number, // Optional

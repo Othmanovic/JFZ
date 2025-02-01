@@ -58,9 +58,9 @@ export class E3dadComponent implements OnInit {
   }
 
   calculateBill(policy: Policy): void {
-    const { shipmentType, containerType, containerSize } = policy;
+    const { serviceType, containerType, containerSize } = policy;
 
-    this.adminService.getPrice(shipmentType, containerSize, containerType).subscribe(
+    this.adminService.getPrice(serviceType, containerSize, containerType).subscribe(
       (price) => {
         if (price.calculationMethod === 'amount') {
           policy.bill = price.pricePerContainer;
