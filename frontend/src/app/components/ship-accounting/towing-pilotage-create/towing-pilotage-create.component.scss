@@ -1,0 +1,163 @@
+.page-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.right-section, .left-section {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.total-box {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+
+.page-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 20px;
+}
+
+.right-section, .left-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+form, table {
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.total-box {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+
+
+/* Normal styles */
+.receipt {
+  display: none;
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 800px;
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
+}
+
+.receipt-info p {
+  margin: 4px 0;
+  font-size: 16px;
+}
+
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.receipt-table th,
+.receipt-table td {
+  border: 1px solid #999;
+  padding: 8px;
+  text-align: center;
+}
+
+.receipt-total {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.print-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Print-only styling */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #print-receipt,
+  #print-receipt * {
+    visibility: visible !important;
+  }
+
+  #print-receipt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    color: black;
+    width: 100%;
+    padding: 30px;
+  }
+
+  .print-button {
+    display: none;
+  }
+}

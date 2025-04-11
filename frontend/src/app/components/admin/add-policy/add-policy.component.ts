@@ -20,7 +20,7 @@ export class AddPolicyComponent implements OnInit {
     weight: 0,
     containerSize: '',
     goodsSize: '',
-    cooling: '',
+    cooling: false,
     isShared: false,
     shipmentType: '',
     containerType: ''
@@ -41,20 +41,21 @@ export class AddPolicyComponent implements OnInit {
   }
 
   submitBillOfLading(): void {
+    console.log("Submitting policy:", this.billOfLading, "Sea Management ID:", this.shipId);
+  
     this.adminService.addPolicy(this.shipId, this.billOfLading).subscribe(
       response => {
-        console.log('Policy added successfully:', response); // Now logs the Policy object
+        console.log('Policy added successfully:', response);
         this.openDialog('Success', 'The policy has been updated successfully!', 'success');
-
-        this.router.navigate(['/admin']); // Redirect to the admin list page  
+        this.router.navigate(['/admin']);
       },
       error => {
-        this.openDialog('Error', 'Failed to update the policy. Please try again.', 'error');
-
         console.error('Error adding policy:', error);
+        this.openDialog('Error', 'Failed to update the policy. Please try again.', 'error');
       }
     );
   }
+  
 
   openDialog(title: string, message: string, type: 'success' | 'error'): void {
     this.dialog.open(PopupDialogComponent, {

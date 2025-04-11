@@ -6,7 +6,7 @@ import { BillService } from '../../../services/bill.service';
 @Component({
   selector: 'app-edit-bill',
   templateUrl: './edit-bill.component.html',
-  styleUrl: './edit-bill.component.scss'
+  styleUrls: ['./edit-bill.component.scss']
 })
 export class EditBillComponent {
   bill: Bill = {
@@ -14,10 +14,30 @@ export class EditBillComponent {
     billNumber: '',
     receiver: '',
     goodsDescription: '',
+    containerNumber: '',
+    weight: 0,
+    containerSize: '',
+    goodsSize: '',
+    cooling: '',
+    isShared: false,
+    shipmentType: '',
+    serviceType: '',
+    containerType: '',
     billAmount: 0,
-    shipId: 0,
+    shipId: '',
     status: 'Pending Review',
+    
+    // 🚢 New Fields from SeaManagement
+    shipName: '',      
+    owner: '',         
+    shippingPort: '',  
+    totalWeight: 0,    
+    netWeight: 0,      
+    arrivalDate: '',   
+    captainName: ''    
   };
+
+  statusOptions = ['Pending Review', 'Accepted', 'Denied'];
 
   constructor(
     private route: ActivatedRoute,

@@ -1,17 +1,28 @@
 <div class="main-content">
   <h2>قائمة السفن</h2>
+
+    <!-- Search Input -->
+    <input
+    type="text"
+    placeholder="ابحث برقم البيان..."
+    [(ngModel)]="searchTerm"
+    class="search-box"
+  />
+
   <table class="custom-table">
     <thead>
       <tr>
         <th>اسم السفينة</th>
+        <th>رقم البيان</th>
         <th>الإجراء</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ship of ships">
-        <td>{{ ship.shipName }}</td>
+      <tr *ngFor="let seaManagement of filteredSeaManagements()">
+        <td>{{ seaManagement.shipName }}</td>
+        <td>{{ seaManagement.bayanNumber || 'غير متوفر' }}</td>
         <td>
-          <button (click)="viewPolicies(ship)">عرض التفاصيل</button>
+          <button (click)="viewPolicies(seaManagement)">عرض التفاصيل</button>
         </td>
       </tr>
     </tbody>
@@ -19,50 +30,60 @@
 
   <div *ngIf="selectedShipPolicies.length > 0; else noPolicy">
     <h2>بوالص السفينة: {{ selectedShipName }}</h2>
-    <table class="custom-table">
-      <thead>
-        <tr>
-          <th>رقم البوليصة</th>
-          <th>المستلم</th>
-          <th>وصف البضاعة</th>
-          <th>رقم الحاوية</th>
-          <th>الوزن</th>
-          <th>حجم الحاوية</th>
-          <th>حجم البضاعة</th>
-          <th>التبريد</th>
-          <th>مشتركة</th>
-          <th>نوع الشحنة</th>
-          <th>نوع الحاوية</th>
-          <th>الفاتورة</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let policy of selectedShipPolicies">
-          <td>{{ policy.billNumber }}</td>
-          <td>{{ policy.receiver }}</td>
-          <td>{{ policy.goodsDescription }}</td>
-          <td>{{ policy.containerNumber }}</td>
-          <td>{{ policy.weight }}</td>
-          <td>{{ policy.containerSize }}</td>
-          <td>{{ policy.goodsSize }}</td>
-          <td>{{ policy.cooling }}</td>
-          <td>{{ policy.isShared ? 'نعم' : 'لا' }}</td>
-          <td>{{ policy.containerType }}</td>
-          <td>{{ policy.serviceType }}</td>
-          <td>
-            <button *ngIf="!policy.bill" (click)="calculateBill(policy)">حساب الفاتورة</button>
-            <span *ngIf="policy.bill">
-              المبلغ: {{ policy.bill }}
-              <button (click)="generateInvoiceForPolicy(policy)">عرض الفاتورة</button>
-            </span>
-          </td>
-
-        </tr>
-      </tbody>
-
-    </table>
-    <!-- <button (click)="generateInvoice()">إنشاء وطباعة الفاتورة</button> -->
+  
+    <!-- 🔍 Search input for policies -->
+    <input
+      type="text"
+      placeholder="ابحث برقم البوليصة..."
+      [(ngModel)]="policySearchTerm"
+      class="search-box"
+    />
+  
+    <div class="custom-table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>رقم البوليصة</th>
+            <th>المستلم</th>
+            <th>وصف البضاعة</th>
+            <th>رقم الحاوية</th>
+            <th>الوزن</th>
+            <th>حجم الحاوية</th>
+            <th>حجم البضاعة</th>
+            <th>التبريد</th>
+            <th>مشتركة</th>
+            <th>نوع الشحنة</th>
+            <th>نوع الحاوية</th>
+            <th>الفاتورة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let policy of filteredPolicies()">
+            <td title="{{ policy.billNumber }}">{{ policy.billNumber }}</td>
+            <td title="{{ policy.receiver }}">{{ policy.receiver }}</td>
+            <td title="{{ policy.goodsDescription }}">{{ policy.goodsDescription }}</td>
+            <td title="{{ policy.containerNumber }}">{{ policy.containerNumber }}</td>
+            <td title="{{ policy.weight }}">{{ policy.weight }}</td>
+            <td title="{{ policy.containerSize }}">{{ policy.containerSize }}</td>
+            <td title="{{ policy.goodsSize }}">{{ policy.goodsSize }}</td>
+            <td title="{{ policy.cooling }}">{{ policy.cooling }}</td>
+            <td title="{{ policy.isShared ? 'نعم' : 'لا' }}">{{ policy.isShared ? 'نعم' : 'لا' }}</td>
+            <td title="{{ policy.containerType }}">{{ policy.containerType }}</td>
+            <td title="{{ policy.serviceType }}">{{ policy.serviceType }}</td>
+            <td>
+              <button *ngIf="!policy.bill" (click)="calculateBill(policy)">حساب الفاتورة</button>
+              <span *ngIf="policy.bill">
+                المبلغ: {{ policy.bill }}
+                <button (click)="generateInvoiceForPolicy(policy)">عرض الفاتورة</button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
   </div>
+  
 
   <ng-template #noPolicy>
     <h2>لا توجد بوالص للسفينة {{ selectedShipName }}</h2>

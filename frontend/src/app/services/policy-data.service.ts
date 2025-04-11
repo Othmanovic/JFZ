@@ -11,6 +11,7 @@ export class PolicyDataService {
   }
 
   getPolicy(): any {
+    console.log("Getting policy:", this.policyData); // Debugging
     return this.policyData;
   }
 

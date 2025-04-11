@@ -6,29 +6,78 @@
       <tr>
         <th>Bill Number</th>
         <th>Receiver</th>
-        <th>Description</th>
         <th>Amount</th>
-        <th>Ship ID</th>
-        <th>Accept</th>
-        <th>Deny</th>
+        <th>Service Type</th>
+        <th>Ship Name</th>
+        <th>Created At</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let bill of bills">
         <td>{{ bill.billNumber }}</td>
         <td>{{ bill.receiver }}</td>
-        <td>{{ bill.goodsDescription }}</td>
         <td>{{ bill.billAmount }}</td>
-        <td>{{ bill.shipId }}</td>
+        <td>{{ bill.serviceType }}</td>
+        <td>{{ bill.shipName }}</td>
+        <td>{{ bill.createdAt | date: 'dd/MM/yyyy' }}</td>
         <td>
-          <button (click)="acceptBill(bill._id)" class="btn btn-success">Accept</button>
-        </td>
-        <td>
-          <button (click)="denyBill(bill._id)" class="btn btn-danger">Deny</button>
+          <button (click)="openDetailsModal(bill)" class="btn btn-info">🔍 View</button>
+          <button (click)="acceptBill(bill._id)" class="btn btn-success">✔ Accept</button>
+          <button (click)="denyBill(bill._id)" class="btn btn-danger">✖ Deny</button>
         </td>
       </tr>
     </tbody>
   </table>
+<!-- 🚀 Modal Popup -->
+<div *ngIf="selectedBill" class="modal-overlay">
+  <div class="modal-content">
+    <h2>📄 Bill Details</h2>
+
+    <div class="bill-section">
+      <h3>🛒 Bill Information</h3>
+      <p><strong>Bill Number:</strong> {{ selectedBill.billNumber }}</p>
+      <p><strong>Receiver:</strong> {{ selectedBill.receiver }}</p>
+      <p><strong>Goods Description:</strong> {{ selectedBill.goodsDescription }}</p>
+      <p><strong>Bill Amount:</strong> {{ selectedBill.billAmount }}</p>
+    </div>
+
+    <div class="bill-section">
+      <h3>📦 Container Details</h3>
+      <p><strong>Container Number:</strong> {{ selectedBill.containerNumber }}</p>
+      <p><strong>Container Size:</strong> {{ selectedBill.containerSize }}</p>
+      <p><strong>Weight:</strong> {{ selectedBill.weight }}</p>
+      <p><strong>Goods Size:</strong> {{ selectedBill.goodsSize }}</p>
+      <p><strong>Cooling:</strong> {{ selectedBill.cooling }}</p>
+      <p><strong>Shared:</strong> {{ selectedBill.isShared ? 'Yes' : 'No' }}</p>
+    </div>
+
+    <div class="bill-section">
+      <h3>🚢 Shipping & Service</h3>
+      <p><strong>Shipment Type:</strong> {{ selectedBill.shipmentType }}</p>
+      <p><strong>Service Type:</strong> {{ selectedBill.serviceType }}</p>
+      <p><strong>Container Type:</strong> {{ selectedBill.containerType }}</p>
+    </div>
+
+    <div class="bill-section">
+      <h3>🚢 Ship Information</h3>
+      <p><strong>Ship Name:</strong> {{ selectedBill.shipName }}</p>
+      <p><strong>Owner:</strong> {{ selectedBill.owner }}</p>
+      <p><strong>Shipping Port:</strong> {{ selectedBill.shippingPort }}</p>
+      <p><strong>Total Weight:</strong> {{ selectedBill.totalWeight }}</p>
+      <p><strong>Net Weight:</strong> {{ selectedBill.netWeight }}</p>
+      <p><strong>Arrival Date:</strong> {{ selectedBill.arrivalDate | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Captain Name:</strong> {{ selectedBill.captainName }}</p>
+    </div>
+
+    <div class="bill-actions">
+      <button (click)="acceptBill(selectedBill._id)" class="btn btn-success">✔ Accept</button>
+      <button (click)="denyBill(selectedBill._id)" class="btn btn-danger">✖ Deny</button>
+      <button (click)="selectedBill = null" class="btn btn-close">Close</button>
+    </div>
+  </div>
+</div>
+  
 
   <div *ngIf="loading" class="loading">
     Loading bills...

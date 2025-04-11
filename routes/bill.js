@@ -1,31 +1,57 @@
 const express = require('express');
 const router = express.Router();
 const Bill = require('../models/Bill'); // Assuming your Bill model is correctly set up with an ORM like Sequelize or Mongoose
+const SeaManagement = require("../models/SeaManagement");
+
 
 // Endpoint to save a bill
 router.post('/', async (req, res) => {
-  console.log("bill backend");
-
   try {
-    const { billNumber, receiver, goodsDescription, billAmount, shipId } = req.body;
+    const billData = req.body;
+    console.log("Bill", billData);
 
-    // Create a new bill in the database
+
     const newBill = new Bill({
-      billNumber,
-      receiver,
-      goodsDescription,
-      billAmount,
-      shipId
-    });
-    await newBill.save();
+      billNumber: billData.billNumber,
+      receiver: billData.receiver,
+      goodsDescription: billData.goodsDescription,
+      containerNumber: billData.containerNumber,
+      weight: billData.weight,
+      containerSize: billData.containerSize,
+      goodsSize: billData.goodsSize,
+      cooling: billData.cooling,
+      isShared: billData.isShared,
+      shipmentType: billData.shipmentType,
+      serviceType: billData.serviceType,
+      containerType: billData.containerType,
+      billAmount: billData.billAmount,
+      shipId: billData.shipId,
+      shipName: billData.shipName,
+      owner: billData.owner,
+      shippingPort: billData.shippingPort,
+      totalWeight: billData.totalWeight,
+      netWeight: billData.netWeight,
+      arrivalDate: billData.arrivalDate,
+      captainName: billData.captainName,
 
-    // Respond with the newly created bill
+      // 🆕 Adding Bayan and Policy Data
+      bayanNumber: billData.bayanNumber,
+      bayanYear: billData.bayanYear,
+      // policyNumber: billData.policyNumber,
+
+      status: billData.status || "Pending Review",
+      createdAt: new Date(),
+    });
+    
+
+    await newBill.save();
     res.status(201).json(newBill);
   } catch (err) {
     console.error('Error saving bill:', err);
     res.status(500).json({ error: 'Failed to save bill.' });
   }
 });
+
 
 router.get('/review', async (req, res) => {
   try {

@@ -38,6 +38,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { EditBillComponent } from './components/e3dad/edit-bill/edit-bill.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BayanDashboardComponent } from './components/bayan-dashboard/bayan-dashboard.component';
+import { WakeelComponent } from './components/wakeel/wakeel.component';
+import { TowingPilotageListComponent } from './components/ship-accounting/towing-pilotage-list/towing-pilotage-list.component';
+import { TowingPilotageCreateComponent } from './components/ship-accounting/towing-pilotage-create/towing-pilotage-create.component';
+import { FeesDashboardComponent } from './components/ship-accounting/fees-dashboard/fees-dashboard.component';
 
 
 @NgModule({
@@ -69,6 +74,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BillPageComponent,
     DeniedBillsComponent,
     EditBillComponent,
+    BayanDashboardComponent,
+    WakeelComponent,
+    TowingPilotageListComponent,
+    TowingPilotageCreateComponent,
+    FeesDashboardComponent,
   ],
   imports: [
     BrowserModule,

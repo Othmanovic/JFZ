@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -14,7 +13,7 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'sea_management', 'handling_management', 'reviewer', 'e3dad', 'finance', 'hr'],
+    enum: ['admin', 'sea_management', 'handling_management', 'reviewer', 'e3dad', 'bayan', 'finance', 'hr'],
     required: true,
   },
 });
@@ -35,7 +34,7 @@ module.exports.getUserByUsername = async function (username) {
 module.exports.comparePassword = async function (candidatePassword, hash) {
   try {
     let ismatch = await bcrypt.compare(candidatePassword, hash);
-    return ismatch
+    return ismatch;
   } catch (error) {
     throw error;
   }

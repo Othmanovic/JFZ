@@ -1,0 +1,64 @@
+<div class="page-container">
+  <div class="right-section">
+    <h2>معلومات السفينة</h2>
+
+    <form (ngSubmit)="submitVoucher()" #voucherForm="ngForm">
+      <label>اسم السفينة</label>
+      <select [(ngModel)]="voucher.shipId" name="shipId" required (change)="onShipChange()">
+        <option *ngFor="let ship of ships" [value]="ship._id">{{ ship.shipName }}</option>
+      </select>
+
+      <label>اسم الوكيل</label>
+      <input type="text" [(ngModel)]="voucher.wakeelName" name="wakeelName" readonly>
+
+      <label>رقم الإقرار</label>
+      <input type="text" [(ngModel)]="voucher.bayanNumber" name="bayanNumber" readonly>
+
+      <label>سنة الإقرار</label>
+      <input type="text" [(ngModel)]="voucher.bayanYear" name="bayanYear" readonly>
+
+      <label>نوع الشحنة</label>
+      <input type="text" [(ngModel)]="voucher.shipmentType" name="shipmentType" readonly>
+
+      <label>علم السفينة</label>
+      <input type="text" [(ngModel)]="voucher.flag" name="flag" readonly>
+
+      <label>الوزن التراكمي</label>
+      <input type="number" [(ngModel)]="voucher.netWeight" name="netWeight" required (input)="calculateFees()">
+
+      <label>أيام التراكي</label>
+      <input type="number" [(ngModel)]="voucher.stayDays" name="stayDays" required (input)="calculateFees()">
+
+      <label>تاريخ</label>
+      <input type="date" [(ngModel)]="voucher.date" name="date" required>
+
+      <button type="submit">حفظ القسيمة</button>
+    </form>
+  </div>
+
+  <div class="left-section">
+    <h2>تفاصيل الرسوم</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>البيان</th>
+          <th>التعريفة</th>
+          <th>القيمة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fee of calculatedFees">
+          <td>{{ fee.label }}</td>
+          <td>{{ fee.rate }}</td>
+          <td>{{ fee.amount | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-box">
+      <strong>إجمالي الفاتورة: {{ total | number:'1.2-2' }} د.ل</strong>
+    </div>
+
+  </div>
+  <button class="print-button" (click)="print()">🖨 طباعة القسيمة</button>
+</div>

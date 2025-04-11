@@ -34,7 +34,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   handleCalculationMethodChange(method: string): void {
-    if (method === 'amount' || method === 'volume') {
+    if (method === 'amount' || method === 'volume' || method === 'pouring') {
       this.price.calculationMethod = method;
     } else {
       console.error('Invalid calculation method:', method);
@@ -42,6 +42,11 @@ export class AdminDashboardComponent implements OnInit {
     // Reset volume if switching back to "amount"
     if (method === 'amount') {
       this.price.volume = 0;
+    }
+
+    if (method === 'pouring') {
+      this.price.containerSize = 0;
+      this.price.weight = 0;
     }
   }
 
@@ -55,10 +60,31 @@ export class AdminDashboardComponent implements OnInit {
       }
     );
   }
+  
+  // Function to calculate discount and update final price
+  calculateDiscount(): void {
+    if (this.price.applyDiscount && this.price.discountPercentage) {
+      const originalPrice = this.price.pricePerContainer;
+      
+      // Apply discount formula
+      const discountAmount = (this.price.discountPercentage / 100) * originalPrice;
+      this.price.discountedPrice = originalPrice - discountAmount;
+      console.log("discounted price: ",this.price.discountedPrice);
+      
+      
+      // Update pricePerContainer with the discounted price
+      this.price.pricePerContainer = this.price.discountedPrice;
+    } else {
+      // If no discount, keep the original price
+      this.price.discountedPrice = this.price.pricePerContainer;
+    }
+  }
+  
+  
 
   savePrice(): void {
-    // Validate price data
-    if (!this.price.shipmentType || !this.price.containerType || !this.price.containerSize) {
+    // Validate required fields
+    if (!this.price.serviceType || !this.price.containerType) {
       console.error('Please fill all required fields.');
       return;
     }
@@ -68,7 +94,18 @@ export class AdminDashboardComponent implements OnInit {
       return;
     }
     
-    this.adminService.savePrice(this.price).subscribe(
+    // Ensure discount is applied correctly
+    // if (this.price.applyDiscount) {
+    //   this.calculateDiscount(); // Calculate the discount before saving
+    // }
+  
+    // Final object to be saved
+    const finalPrice: Price = {
+      ...this.price,
+      pricePerContainer: this.price.discountedPrice || this.price.pricePerContainer, // Ensure final price is correct
+    };
+  
+    this.adminService.savePrice(finalPrice).subscribe(
       (response) => {
         this.openDialog('Success', 'The price has been updated successfully!', 'success');
         this.router.navigate(['/admin']);
@@ -79,6 +116,8 @@ export class AdminDashboardComponent implements OnInit {
       }
     );
   }
+  
+  
   
   
   

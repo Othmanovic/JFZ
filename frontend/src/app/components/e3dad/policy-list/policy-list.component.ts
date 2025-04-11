@@ -16,17 +16,17 @@ export class PolicyListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchPolicies();
+    // this.fetchPolicies();
   }
 
-  fetchPolicies(): void {
-    this.seaManagementService.getPoliciesForShip(this.shipId).subscribe(
-      (data) => {
-        this.policies = data;
-      },
-      (error) => {
-        console.error('Error fetching policies:', error);
-      }
-    );
-  }
+  // fetchPolicies(): void {
+  //   this.seaManagementService.getPoliciesForShip(this.shipId).subscribe(
+  //     (data) => {
+  //       this.policies = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching policies:', error);
+  //     }
+  //   );
+  // }
 }

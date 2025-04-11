@@ -8,7 +8,9 @@ const ShipSchema = new mongoose.Schema({
   captainName: { type: String, required: true },
   shippingPort: { type: String },
   shipNumber: { type: String },
-  bayanNumber: { type: String },
+  maxDive: { type: String },
+  bayanYear: { type: Number },
+  bayanNumber: { type: Number },
   startWorkingDate: { type: Date }, // New field for start working date
   policies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Policy' }],
 });

@@ -6,17 +6,13 @@ import { PopupDialogComponent } from '../../shared/popup-dialog/popup-dialog.com
 @Component({
   selector: 'app-reviewer',
   templateUrl: './reviewer.component.html',
-  styleUrl: './reviewer.component.scss'
+  styleUrl: './reviewer.component.scss',
 })
 export class ReviewerComponent {
   bills: any[] = []; // List of bills
   loading: boolean = true;
 
-
-  constructor(
-    private billService: BillService,
-    private dialog: MatDialog,
-  ) { }
+  constructor(private billService: BillService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadBills();
@@ -40,11 +36,19 @@ export class ReviewerComponent {
   acceptBill(billId: string): void {
     this.billService.updateBillStatus(billId, 'Accepted').subscribe(
       (response) => {
-        this.openDialog('Success', 'The bill has been denied successfully!', 'success');
+        this.openDialog(
+          'Success',
+          'The bill has been denied successfully!',
+          'success'
+        );
         this.loadBills(); // Refresh bills list
       },
       (error) => {
-        this.openDialog('Error', 'Failed to deny the bill. Please try again.', 'error');
+        this.openDialog(
+          'Error',
+          'Failed to deny the bill. Please try again.',
+          'error'
+        );
       }
     );
   }
@@ -53,11 +57,19 @@ export class ReviewerComponent {
   denyBill(billId: string): void {
     this.billService.updateBillStatus(billId, 'Denied').subscribe(
       (response) => {
-        this.openDialog('Success', 'The bill has been denied successfully!', 'success');
+        this.openDialog(
+          'Success',
+          'The bill has been denied successfully!',
+          'success'
+        );
         this.loadBills(); // Refresh bills list
       },
       (error) => {
-        this.openDialog('Error', 'Failed to deny the bill. Please try again.', 'error');
+        this.openDialog(
+          'Error',
+          'Failed to deny the bill. Please try again.',
+          'error'
+        );
       }
     );
   }
@@ -65,7 +77,13 @@ export class ReviewerComponent {
   openDialog(title: string, message: string, type: 'success' | 'error'): void {
     this.dialog.open(PopupDialogComponent, {
       data: { title, message, type },
-      width: '400px'
+      width: '400px',
     });
+  }
+
+  selectedBill: any = null;
+
+  openDetailsModal(bill: any) {
+    this.selectedBill = bill;
   }
 }

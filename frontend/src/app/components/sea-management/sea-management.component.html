@@ -15,29 +15,47 @@
 
         <div class="form-group">
           <label for="shipName">اسم السفينة</label>
-          <select id="shipName" [(ngModel)]="selectedShipName" (change)="onShipSelect($event)" name="shipName" required>
-            <option *ngFor="let ship of ships" [value]="ship.shipName">{{ ship.shipName }}</option>
+          <select id="shipName" [(ngModel)]="selectedShip" name="shipId" (change)="onShipSelect()" required>
+            <option *ngFor="let ship of ships" [ngValue]="ship">{{ ship.shipName }}</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="owner">المالك</label>
-          <input type="text" id="owner" [(ngModel)]="owner" name="owner" readonly>
+          <input type="text" id="owner" [(ngModel)]="owner" name="owner" required>
         </div>
-
         <div class="form-group">
-          <label for="captainName">اسم القبطان</label>
-          <input type="text" id="captainName" [(ngModel)]="captainName" name="captainName" readonly>
+          <label for="owner">الوكيل الملاحي</label>
+          <input type="text" id="wakeel" [(ngModel)]="wakeel" name="wakeel" required>
+        </div>
+        <div class="form-group">
+          <label for="owner">اشارة النداء</label>
+          <input type="text" id="callSign" [(ngModel)]="callSign" name="callSign" required>
         </div>
 
         <div class="form-group">
           <label for="flag">العلم</label>
-          <input type="text" id="flag" [(ngModel)]="flag" name="flag" readonly>
+          <input type="text" id="flag" [(ngModel)]="flag" name="flag" required>
         </div>
 
         <div class="form-group">
+          <label for="flag">الوزن الاجمالي</label>
+          <input type="text" id="totalWeight" [(ngModel)]="totalWeight" name="totalWeight" required>
+        </div>
+        <div class="form-group">
+          <label for="flag">الوزن الصافي</label>
+          <input type="text" id="netWeight" [(ngModel)]="netWeight" name="netWeight" required>
+        </div>
+
+        <div class="form-group">
+          <label for="captainName">اسم القبطان</label>
+          <input type="text" id="captainName" [(ngModel)]="captainName" name="captainName" required>
+        </div>
+
+
+        <div class="form-group">
           <label for="maxDive">الغاطس الأقصى</label>
-          <input type="number" id="maxDive" [(ngModel)]="maxDive" name="maxDive" readonly>
+          <input type="number" id="maxDive" [(ngModel)]="maxDive" name="maxDive" required>
         </div>
 
         <div class="form-group">
@@ -51,8 +69,19 @@
         </div>
 
         <div class="form-group">
-          <label for="shipmentType">نوع الشحنة</label>
-          <input type="text" id="shipmentType" [(ngModel)]="shipmentType" name="shipmentType" required>
+          <label for="shipmentType">نوع الشحنة ووصفها</label>
+      <select
+        id="shipmentType"
+        [(ngModel)]="shipmentType"
+        name="shipmentType"
+        required
+      >
+        <option value="" disabled selected>اختر نوع الشحنة</option>
+        <option value="حاويات">حاويات</option>
+        <option value="بضائع الصب">بضائع الصب</option>
+        <option value="بضائع عامة">بضائع عامة</option>
+        <!-- Add more options if needed -->
+      </select>
         </div>
 
         <div class="form-group">

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './not-found.component.scss'
 })
 export class NotFoundComponent implements OnInit {
-  homeRoute: string = '/login'; // Default route if no role is found
+  homeRoute: string = '/home'; // Default route if no role is found
 
   ngOnInit(): void {
     this.determineHomeRoute();
@@ -35,7 +35,7 @@ export class NotFoundComponent implements OnInit {
         this.homeRoute = '/admin';
         break;
       default:
-        this.homeRoute = '/login';
+        this.homeRoute = '/home';
         break;
     }
   }

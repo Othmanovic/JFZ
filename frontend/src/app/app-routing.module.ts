@@ -24,6 +24,11 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
 import { BillPageComponent } from './components/e3dad/bill-page/bill-page.component';
 import { DeniedBillsComponent } from './components/e3dad/denied-bills/denied-bills.component';
 import { EditBillComponent } from './components/e3dad/edit-bill/edit-bill.component';
+import { BayanDashboardComponent } from './components/bayan-dashboard/bayan-dashboard.component';
+import { WakeelComponent } from './components/wakeel/wakeel.component';
+import { TowingPilotageListComponent } from './components/ship-accounting/towing-pilotage-list/towing-pilotage-list.component';
+import { TowingPilotageCreateComponent } from './components/ship-accounting/towing-pilotage-create/towing-pilotage-create.component';
+import { FeesDashboardComponent } from './components/ship-accounting/fees-dashboard/fees-dashboard.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +52,12 @@ const routes: Routes = [
   { path: 'ship-arrival-details/:id', component: ShipArrivalDetailsComponent, canActivate: [AuthGuard], },
   { path: 'sea_management', component: SeaManagementComponent, canActivate: [AuthGuard], },
   { path: 'add-ship', component: AddShipComponent, canActivate: [AuthGuard], },
+  { path: 'wakeel', component: WakeelComponent, canActivate: [AuthGuard], },
+  { path: 'towing-pilotage', component: TowingPilotageListComponent, canActivate: [AuthGuard], },
+  { path: 'towing-pilotage-create', component: TowingPilotageCreateComponent, canActivate: [AuthGuard], },
+  { path: 'fees-dashboard', component: FeesDashboardComponent, canActivate: [AuthGuard], },
+  { path: 'bayan', component: BayanDashboardComponent },
+
 
   { path: 'admin/add-policy/:id', component: AddPolicyComponent, canActivate: [AuthGuard], },
   {
@@ -74,7 +85,8 @@ const routes: Routes = [
 
 
   { path: 'home', component: HomeComponent }, // Generic Home Page
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root to home
+  { path: 'not-found', component: NotFoundComponent }, // Wildcard route for a 404 page
+  { path: '', redirectTo: '/not-found', pathMatch: 'full' }, // Redirect root to home
   { path: '**', component: NotFoundComponent }, // Wildcard route for a 404 page
 
 

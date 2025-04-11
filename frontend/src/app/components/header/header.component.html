@@ -66,6 +66,24 @@
         <span class="menu-text">Add Ship</span>
       </a>
     </li>
+    <li *ngIf="userRole === 'sea_management'">
+      <a routerLink="/fees-dashboard" routerLinkActive="active">
+        <span class="menu-icon material-icons">add_circle_outline</span>
+        <span class="menu-text">إدارة الرسوم</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'sea_management'">
+      <a routerLink="/towing-pilotage" routerLinkActive="active">
+        <span class="menu-icon material-icons">add_circle_outline</span>
+        <span class="menu-text">قطر و إرشاد</span>
+      </a>
+    </li>
+    <li *ngIf="userRole === 'sea_management'">
+      <a routerLink="/wakeel" routerLinkActive="active">
+        <span class="menu-icon material-icons">add_circle_outline</span>
+        <span class="menu-text">Create Account</span>
+      </a>
+    </li>
 
     <!-- Admin / IT -->
 
@@ -102,6 +120,14 @@
         <span class="menu-text">المالية</span>
       </a>
     </li>
+
+    <li *ngIf="userRole === 'bayan'">
+      <a routerLink="/bayan" routerLinkActive="active">
+        <span class="menu-icon material-icons">assignment</span>
+        <span class="menu-text">لوحة تحكم البايان</span>
+      </a>
+    </li>
+    
 
     <!-- <li>
       <a routerLink="/timetable" routerLinkActive="active">

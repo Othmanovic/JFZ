@@ -12,18 +12,23 @@ import { Router } from '@angular/router';
 
 export class SeaManagementComponent implements OnInit {
   ships: Ship[] = [];
+  selectedShip: Ship | null = null;
+  selectedShipId: string = ''
   selectedShipName: string = '';
+  shipId: string = '';
+  
   // Form fields
   shipName: string = '';
   owner: string = '';
+  wakeel: string = '';
+  callSign: string = '';
   captainName: string = '';
   flag: string = '';
+  totalWeight: number = 0;
+  netWeight: number = 0;
   maxDive: number = 0;
   // Other form fields (not related to ship selection)
   // agent: string = '';
-  // callSign: string = '';
-  // totalWeight: number = 0;
-  netWeight: number = 0;
   crewNumber: number = 0;
   crewNationality: string = '';
   shipmentType: string = '';
@@ -63,26 +68,35 @@ export class SeaManagementComponent implements OnInit {
     );
   }
 
-  onShipSelect(event: any) {
-    const selectedShip = this.ships.find(ship => ship.shipName === this.selectedShipName);
-    if (selectedShip) {
-      this.shipName = selectedShip.shipName; // Update the shipName field
-      this.owner = selectedShip.owner;
-      this.captainName = selectedShip.captainName;
-      this.flag = selectedShip.flag;
-      this.maxDive = selectedShip.maxDive;
+  onShipSelect() {
+    if (this.selectedShip) {
+      this.owner = this.selectedShip.owner;
+      // this.wakeel = this.selectedShip.wakeel; // Assuming this field exists
+      // this.callSign = this.selectedShip.callSign;
+      this.flag = this.selectedShip.flag;
+      // this.totalWeight = this.selectedShip.totalWeight;
+      // this.netWeight = this.selectedShip.netWeight;
+      this.maxDive = this.selectedShip.maxDive;
+      this.captainName = this.selectedShip.captainName;
     }
   }
   
+  
 
   onSubmit() {
+    if (!this.selectedShip) {
+      this.errorMessage = 'يجب اختيار سفينة';
+      return;
+    }
+  
     const shipArrivalData = {
-      shipName: this.shipName,
+      shipId: this.selectedShip._id, // Store the Ship ID
+      shipName: this.selectedShip.shipName, // Store the Ship Name
       owner: this.owner,
-      // agent: this.agent,
-      // callSign: this.callSign,
+      wakeel: this.wakeel,
+      callSign: this.callSign,
       flag: this.flag,
-      // totalWeight: this.totalWeight,
+      totalWeight: this.totalWeight,
       netWeight: this.netWeight,
       maxDive: this.maxDive,
       crewNumber: this.crewNumber,
@@ -98,29 +112,30 @@ export class SeaManagementComponent implements OnInit {
       captainName: this.captainName,
       notes: this.notes,
     };
-
+  
     this.seaManagementService.saveShipArrival(shipArrivalData).subscribe(
-      response => {
+      (response) => {
         console.log('Ship arrival data saved successfully', response);
         this.formSubmitted = true;
         this.errorMessage = null;
         this.clearForm();
       },
-      error => {
+      (error) => {
         console.error('Error saving ship arrival data', error);
         this.formSubmitted = false;
-        this.errorMessage = 'Failed to submit the form. Please fill all fields.';
+        this.errorMessage = 'فشل في إرسال النموذج. يرجى التحقق من جميع الحقول.';
       }
     );
   }
+  
 
   clearForm() {
     this.shipName = '';
     this.owner = '';
     // this.agent = '';
-    // this.callSign = '';
+    this.callSign = '';
     this.flag = '';
-    // this.totalWeight = 0;
+    this.totalWeight = 0;
     this.netWeight = 0;
     this.maxDive = 0;
     this.crewNumber = 0;

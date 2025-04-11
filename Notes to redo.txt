@@ -1,3 +1,17 @@
 The bill page on refresh, maybe Use Backend to Fetch Bill Data
 
 The confirm password and the authentication in general
+
+After the meeting:
+
+The bayan user who adds a bayan number for the ships, he gets a list of ships and he can search by the name of the ship, and the number of the bayan starts at the beginning of the year, and then it restarts again at the beginning of the new year. The e3dad user then can search by the bayan number to find the ship and calculate its bill.
+
+The finance user also generates a receipt for all the policies that have the same bayan number. 
+
+
+add search box by policy number
+add more details of the ship in e3dad grid
+
+in adding policy, add dropdown lists
+
+Ayam al taraki = ayam * entrance fee (0.101) * ship net weight

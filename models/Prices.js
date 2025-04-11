@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const priceSchema = new mongoose.Schema({
   shipmentType: {
     type: String,
-    required: true, // e.g., "عوائد مناولة"
   },
   serviceType: {
     type: String,
@@ -15,11 +14,9 @@ const priceSchema = new mongoose.Schema({
   },
   containerSize: {
     type: Number,
-    required: true, // e.g., 38.5, 77
   },
   weight: {
     type: Number,
-    required: true,
   },
   pricePerContainer: {
     type: Number,
@@ -27,13 +24,16 @@ const priceSchema = new mongoose.Schema({
   },
   calculationMethod: {
     type: String,
-    enum: ['amount', 'volume', 'pouring'], // Only "amount" or "volume" is allowed
+    enum: ["amount", "volume", "pouring"], // Only "amount" or "volume" is allowed
     required: true,
   },
   volume: {
     type: Number,
     default: null, // Optional, only used when calculationMethod === 'volume'
   },
+  applyDiscount: { type: Boolean, default: false },
+  discountPercentage: { type: Number, default: 0 },
+  discountedPrice: { type: Number, default: 0 },
 });
 
-module.exports = mongoose.model('Price', priceSchema);
+module.exports = mongoose.model("Price", priceSchema);

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent {
 
-  arrivalsWithShipNumber: any[] = [];
+  seaManagementData: any[] = [];
 
   constructor(private seaManagementService: SeaManagementService, private router: Router) {}
 
@@ -18,10 +18,15 @@ export class AdminComponent {
   }
 
   fetchShipArrivalsWithShipNumber() {
-    this.seaManagementService.getShipArrivals().subscribe(data => {
-      // Filter ships that have a shipNumber
-      this.arrivalsWithShipNumber = data.filter(arrival => arrival.shipNumber);
-    });
+    this.seaManagementService.fetchSeaManagement().subscribe(
+      (data) => {
+        this.seaManagementData = data;
+        console.log('Sea Management Data:', this.seaManagementData);
+      },
+      (error) => {
+        console.error('Error fetching sea management data:', error);
+      }
+    );
   }
 
 }

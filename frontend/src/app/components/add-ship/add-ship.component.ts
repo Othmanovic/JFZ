@@ -5,7 +5,7 @@ import { SeaManagementService } from '../../services/sea-management.service';
 @Component({
   selector: 'app-add-ship',
   templateUrl: './add-ship.component.html',
-  styleUrls: ['./add-ship.component.scss']
+  styleUrls: ['./add-ship.component.scss'],
 })
 export class AddShipComponent {
   shipName: string = '';
@@ -15,12 +15,21 @@ export class AddShipComponent {
   maxDive: number | null = null;
   // shipNumber: string = '';
   // shippingPort: string = '';
-  bayanNumber: string = '';
+  // bayanNumber: string = '';
 
-  constructor(private seaManagementService: SeaManagementService, private router: Router) { }
+  constructor(
+    private seaManagementService: SeaManagementService,
+    private router: Router
+  ) {}
 
   addShip() {
-    if (this.shipName && this.owner && this.flag && this.maxDive && this.bayanNumber) {
+    if (
+      this.shipName &&
+      this.owner &&
+      this.flag &&
+      this.maxDive
+      // this.bayanNumber
+    ) {
       const newShip = {
         shipName: this.shipName,
         captainName: this.captainName,
@@ -29,15 +38,15 @@ export class AddShipComponent {
         maxDive: this.maxDive,
         // shipNumber: this.shipNumber,
         // shippingPort: this.shippingPort,
-        bayanNumber: this.bayanNumber // Add Bayan Number here
+        // bayanNumber: this.bayanNumber, // Add Bayan Number here
       };
-  
-      console.log("new ship", newShip);
-  
+
+      console.log('new ship', newShip);
+
       this.seaManagementService.addShip(newShip).subscribe(
         (response) => {
-          console.log("Response",response);
-          
+          console.log('Response', response);
+
           if (response.success) {
             alert('Ship added successfully!');
             this.clearForm();
@@ -54,7 +63,6 @@ export class AddShipComponent {
       alert('Please fill in all the required fields.');
     }
   }
-  
 
   clearForm() {
     this.shipName = '';

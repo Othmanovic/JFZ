@@ -24,14 +24,25 @@
     </div>
 
     <div class="field-group">
-      <label for="goodsDescription">وصف البضاعة</label>
-      <input
-        type="text"
-        id="goodsDescription"
-        [(ngModel)]="billOfLading.goodsDescription"
-        name="goodsDescription"
+      <label for="goodsDescription">نوع الشحنة ووصفها </label>
+      <select
+        id="shipmentType"
+        [(ngModel)]="billOfLading.shipmentType"
+        name="shipmentType"
         required
-      />
+      >
+        <option value="" disabled selected>اختر نوع الشحنة ووصفها</option>
+        <option value="سيارات">سيارات</option>
+        <option value="شاحنات">شاحنات</option>
+        <option value="ابقار">ابقار</option>
+        <option value="قطران">قطران</option>
+        <option value="سكر">سكر</option>
+        <option value="اسمنت مكيس">اسمنت مكيس</option>
+        <option value="اسمنت سائب">اسمنت سائب</option>
+        <option value="شعير">شعير</option>
+        <option value="القمح">القمح</option>
+        <!-- Add more options if needed -->
+      </select>
     </div>
 
     <div class="field-group">
@@ -77,48 +88,57 @@
         required
       />
     </div>
-
+<!-- 
     <div class="field-group">
-      <label for="cooling">التبريد</label>
-      <input
-        type="text"
-        id="cooling"
-        [(ngModel)]="billOfLading.cooling"
-        name="cooling"
+      <label for="shipmentType">وصف البضاعة </label>
+      <select
+        id="shipmentType"
+        [(ngModel)]="billOfLading.shipmentType"
+        name="shipmentType"
         required
-      />
-    </div>
+      >
+        <option value="" disabled selected>اختر وصف البضاعة</option>
+        <option value="حاويات">حاويات</option>
+        <option value="بضائع الصب">بضائع الصب</option>
+        <option value="بضائع عامة">بضائع عامة</option>
+      </select>
+    </div> -->
 
-    <div class="field-group">
-      <label for="shipmentType">نوع الشحنة ووصفها</label>
-      <input
-      type="text"
-      id="shipmentType"
-      [(ngModel)]="billOfLading.shipmentType"
-      name="shipmentType"
-      required
-      />
-    </div>
-    
     <div class="field-group">
       <label for="containerType">نوع الحاوية</label>
-      <input
-        type="text"
+      <select
         id="containerType"
         [(ngModel)]="billOfLading.containerType"
         name="containerType"
         required
-      />
+      >
+        <option value="" disabled selected>اختر نوع الحاوية</option>
+        <option value="حاويات تفريغ">حاويات تفريغ</option>
+        <option value="حاويات تصدير معباة">حاويات تصدير معباة</option>
+        <option value="حاويات تصدير فارغ">حاويات تصدير فارغ</option>
+        <!-- Add more options if needed -->
+      </select>
     </div>
-    
+
     <div class="checkbox-group">
+      <label for="isShared">مشتركة</label>
       <input
         type="checkbox"
         id="isShared"
         [(ngModel)]="billOfLading.isShared"
         name="isShared"
       />
-      <label for="isShared">مشتركة</label>
+    </div>
+
+    <div class="checkbox-group">
+      <label for="cooling">التبريد</label>
+      <input
+        type="checkbox"
+        id="cooling"
+        [(ngModel)]="billOfLading.cooling"
+        name="cooling"
+        required
+      />
     </div>
 
     <button type="submit" class="submit-button">إرسال</button>

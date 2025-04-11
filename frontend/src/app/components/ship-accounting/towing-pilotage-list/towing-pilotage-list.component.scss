@@ -1,0 +1,70 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+  direction: rtl;
+  font-family: 'Cairo', sans-serif;
+  padding: 20px;
+}
+
+.filter-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+input[type="date"] {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 6px 14px;
+  background-color: #00587a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.voucher-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.voucher-table th, .voucher-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.voucher-table th {
+  background-color: #003f5c;
+  color: white;
+}
+
+.header-actions {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.header-actions button {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.header-actions button:hover {
+  background-color: #218838;
+}
+

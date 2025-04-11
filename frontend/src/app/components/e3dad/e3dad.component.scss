@@ -41,3 +41,56 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.search-box {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: right;
+  direction: rtl;
+}
+
+.search-box {
+  width: 50%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: right;
+  direction: rtl;
+}
+
+.custom-table-container {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.custom-table {
+  width: 100%;
+  min-width: 1200px; /* Ensures table doesn't shrink */
+  border-collapse: collapse;
+  table-layout: fixed; /* Prevents columns from stretching */
+}
+
+.custom-table th, .custom-table td {
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds "..." for long text */
+  max-width: 150px; /* Adjust based on your needs */
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .custom-table th, .custom-table td {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    max-width: 100px;
+  }
+}
+
+
+

@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>قائمة قسائم القطر والإرشاد</h2>
+
+  <form class="filter-form" (ngSubmit)="filterVouchers()">
+    <label>من التاريخ:</label>
+    <input type="date" [(ngModel)]="filter.fromDate" name="fromDate" required>
+
+    <label>إلى التاريخ:</label>
+    <input type="date" [(ngModel)]="filter.toDate" name="toDate" required>
+
+    <button type="submit">عرض البيانات</button>
+  </form>
+  <div class="header-actions">
+    <button routerLink="/towing-pilotage-create">➕ إضافة قسيمة جديدة</button>
+  </div>
+  
+  <table class="voucher-table" *ngIf="vouchers.length > 0">
+    <thead>
+      <tr>
+        <th>رقم القسيمة</th>
+        <th>اسم السفينة</th>
+        <th>نوع الخدمة</th>
+        <th>تاريخ القسيمة</th>
+        <th>الوكيل الملاحي</th>
+        <th>القيمة</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let voucher of vouchers">
+        <td>{{ voucher.number }}</td>
+        <td>{{ voucher.shipName }}</td>
+        <td>{{ voucher.serviceType }}</td>
+        <td>{{ voucher.date | date:'yyyy/MM/dd' }}</td>
+        <td>{{ voucher.agent }}</td>
+        <td>{{ voucher.total | number:'1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="vouchers.length === 0 && submitted">لا توجد بيانات</div>
+</div>

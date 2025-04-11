@@ -3,57 +3,69 @@
   <form (ngSubmit)="updateBill()" class="form-container">
     <div class="field-group">
       <label for="billNumber">رقم الفاتورة</label>
-      <input
-        type="text"
-        id="billNumber"
-        [(ngModel)]="bill.billNumber"
-        name="billNumber"
-        required
-      />
+      <input type="text" id="billNumber" [(ngModel)]="bill.billNumber" name="billNumber" required />
     </div>
 
     <div class="field-group">
       <label for="receiver">المستلم</label>
-      <input
-        type="text"
-        id="receiver"
-        [(ngModel)]="bill.receiver"
-        name="receiver"
-        required
-      />
+      <input type="text" id="receiver" [(ngModel)]="bill.receiver" name="receiver" required />
     </div>
 
     <div class="field-group">
       <label for="goodsDescription">وصف البضائع</label>
-      <input
-        type="text"
-        id="goodsDescription"
-        [(ngModel)]="bill.goodsDescription"
-        name="goodsDescription"
-        required
-      />
+      <input type="text" id="goodsDescription" [(ngModel)]="bill.goodsDescription" name="goodsDescription" required />
+    </div>
+
+    <div class="field-group">
+      <label for="containerNumber">رقم الحاوية</label>
+      <input type="text" id="containerNumber" [(ngModel)]="bill.containerNumber" name="containerNumber" required />
+    </div>
+
+    <div class="field-group">
+      <label for="weight">الوزن</label>
+      <input type="number" id="weight" [(ngModel)]="bill.weight" name="weight" required />
+    </div>
+
+    <div class="field-group">
+      <label for="containerSize">حجم الحاوية</label>
+      <input type="text" id="containerSize" [(ngModel)]="bill.containerSize" name="containerSize" required />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsSize">حجم البضاعة</label>
+      <input type="text" id="goodsSize" [(ngModel)]="bill.goodsSize" name="goodsSize" required />
+    </div>
+
+    <div class="field-group">
+      <label for="cooling">التبريد</label>
+      <input type="text" id="cooling" [(ngModel)]="bill.cooling" name="cooling" required />
+    </div>
+
+    <div class="field-group">
+      <label for="serviceType">نوع الخدمة</label>
+      <input type="text" id="serviceType" [(ngModel)]="bill.serviceType" name="serviceType" required />
+    </div>
+
+    <div class="field-group">
+      <label for="containerType">نوع الحاوية</label>
+      <input type="text" id="containerType" [(ngModel)]="bill.containerType" name="containerType" required />
     </div>
 
     <div class="field-group">
       <label for="billAmount">المبلغ</label>
-      <input
-        type="number"
-        id="billAmount"
-        [(ngModel)]="bill.billAmount"
-        name="billAmount"
-        required
-      />
+      <input type="number" id="billAmount" [(ngModel)]="bill.billAmount" name="billAmount" required />
     </div>
 
     <div class="field-group">
       <label for="shipId">رقم السفينة</label>
-      <input
-        type="text"
-        id="shipId"
-        [(ngModel)]="bill.shipId"
-        name="shipId"
-        required
-      />
+      <input type="text" id="shipId" [(ngModel)]="bill.shipId" name="shipId" required />
+    </div>
+
+    <div class="field-group">
+      <label for="status">حالة الفاتورة</label>
+      <select id="status" [(ngModel)]="bill.status" name="status">
+        <option *ngFor="let option of statusOptions" [value]="option">{{ option }}</option>
+      </select>
     </div>
 
     <button type="submit" class="submit-button">تحديث</button>

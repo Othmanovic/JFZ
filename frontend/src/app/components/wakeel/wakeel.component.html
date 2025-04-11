@@ -1,0 +1,33 @@
+<div *ngIf="selectedTab === 'wakeel'" class="wakeel-container">
+  <div class="card">
+    <h3>إضافة وكيل</h3>
+    <form (ngSubmit)="addWakeel()" class="wakeel-form">
+      <input type="text" [(ngModel)]="wakeel.name" name="name" placeholder="اسم الوكيل" required />
+      <input type="number" [(ngModel)]="wakeel.balance" name="balance" placeholder="رصيد ابتدائي" />
+      <button type="submit">حفظ</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>الوكلاء الحاليين</h3>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الرصيد</th>
+          <th>شحن الرصيد</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let w of wakeels">
+          <td>{{ w.name }}</td>
+          <td>{{ w.balance }} د.ل</td>
+          <td class="top-up-cell">
+            <input type="number" [(ngModel)]="w.topUpAmount" placeholder="المبلغ" />
+            <button (click)="topUpWakeel(w._id, w.topUpAmount)">شحن</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

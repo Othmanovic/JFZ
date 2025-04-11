@@ -1,20 +1,23 @@
 export interface Policy {
-  id: string; // The ObjectId from MongoDB, mapped as a string in TypeScript
+  id: string;
   billNumber: string;
   receiver: string;
   goodsDescription: string;
   containerNumber: string;
   weight: number;
-  containerSize: string; // Keep as string if it's entered as text
+  containerSize: string;
   goodsSize: string;
-  cooling: string;
+  cooling: boolean;
   isShared: boolean;
-  shipmentType: string; // Matches the `shipmentType` in Price model
-  serviceType: string; // Matches the `shipmentType` in Price model
-  containerType: string; // Add this field if needed for price calculation
-  ship: string; // Ship's ObjectId
-  bill?: number; // Optional field for calculated bill
+  shipmentType: string;
+  serviceType: string;
+  containerType: string;
+  seaManagement: string; // ✅ Link to SeaManagement
+  shipName: string; // ✅ Store shipName for display
+  bill?: number;
 }
+
+
 
 export interface PoliciesResponse {
   policies: Policy[];

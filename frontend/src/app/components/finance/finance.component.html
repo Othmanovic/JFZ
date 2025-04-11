@@ -1,25 +1,97 @@
 <div class="main-content">
   <h2>الفواتير المقبولة</h2>
+
   <table class="custom-table">
     <thead>
       <tr>
-        <th>رقم الفاتورة</th>
+        <th>رقم البوليصة</th>
+        <th>رقم البيان</th>
         <th>المستلم</th>
         <th>وصف البضائع</th>
         <th>المبلغ</th>
         <th>رقم السفينة</th>
         <th>التاريخ</th>
+        <th>تفاصيل</th>
+        <th>طباعة</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let bill of bills">
         <td>{{ bill.billNumber }}</td>
+        <td>{{ bill.bayanYear }} / {{bill.bayanNumber}}</td>
         <td>{{ bill.receiver }}</td>
         <td>{{ bill.goodsDescription }}</td>
         <td>{{ bill.billAmount }}</td>
         <td>{{ bill.shipId }}</td>
         <td>{{ bill.createdAt | date: 'short' }}</td>
+        <td>
+          <button class="btn btn-info" (click)="openDetailsModal(bill)">🔍 عرض التفاصيل</button>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="bill.bayanNumber && bill.bayanYear ? printBills(bill.bayanNumber, bill.bayanYear) : null">
+            🖨️ طباعة
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Details Modal -->
+<div *ngIf="selectedBill" class="modal-overlay">
+  <div class="modal-content">
+    <h3>تفاصيل الفاتورة</h3>
+
+    <div class="bill-section">
+      <p><strong>رقم البوليصة:</strong> {{ selectedBill.billNumber }}</p>
+      <p><strong>المستلم:</strong> {{ selectedBill.receiver }}</p>
+      <p><strong>وصف البضائع:</strong> {{ selectedBill.goodsDescription }}</p>
+      <p><strong>رقم الحاوية:</strong> {{ selectedBill.containerNumber }}</p>
+      <p><strong>الوزن:</strong> {{ selectedBill.weight }}</p>
+      <p><strong>حجم الحاوية:</strong> {{ selectedBill.containerSize }}</p>
+      <p><strong>نوع الخدمة:</strong> {{ selectedBill.serviceType }}</p>
+    </div>
+
+    <div class="bill-section">
+      <p><strong>اسم السفينة:</strong> {{ selectedBill.shipName }}</p>
+      <p><strong>ميناء الشحن:</strong> {{ selectedBill.shippingPort }}</p>
+      <p><strong>تاريخ الوصول:</strong> {{ selectedBill.arrivalDate | date: 'short' }}</p>
+      <p><strong>اسم القبطان:</strong> {{ selectedBill.captainName }}</p>
+      <p><strong>الحالة:</strong> {{ selectedBill.status }}</p>
+    </div>
+
+    <button class="btn btn-close" (click)="closeDetailsModal()">إغلاق</button>
+  </div>
+</div>
+
+<!-- Hidden Print Section -->
+<div #printSection style="display: none">
+  <h2>🧾 إيصال الفواتير</h2>
+  <p><strong>رقم البيان:</strong> {{ printBayanYear }} / {{ printBayanNumber }}</p>
+
+  <div *ngFor="let bill of filteredBills" class="bill-receipt">
+    <p><strong>رقم الفاتورة:</strong> {{ bill.billNumber }}</p>
+    <p><strong>المستلم:</strong> {{ bill.receiver }}</p>
+    <p><strong>وصف البضائع:</strong> {{ bill.goodsDescription }}</p>
+    <p><strong>رقم الحاوية:</strong> {{ bill.containerNumber }}</p>
+    <p><strong>الوزن:</strong> {{ bill.weight }}</p>
+    <p><strong>حجم الحاوية:</strong> {{ bill.containerSize }}</p>
+    <p><strong>حجم البضائع:</strong> {{ bill.goodsSize }}</p>
+    <p><strong>التبريد:</strong> {{ bill.cooling }}</p>
+    <p><strong>نوع الخدمة:</strong> {{ bill.serviceType }}</p>
+    <p><strong>نوع الشحن:</strong> {{ bill.shipmentType }}</p>
+    <p><strong>نوع الحاوية:</strong> {{ bill.containerType }}</p>
+    <p><strong>المبلغ:</strong> {{ bill.billAmount }}</p>
+    <p><strong>رقم السفينة:</strong> {{ bill.shipId }}</p>
+    <p><strong>اسم السفينة:</strong> {{ bill.shipName }}</p>
+    <p><strong>مالك السفينة:</strong> {{ bill.owner }}</p>
+    <p><strong>ميناء الشحن:</strong> {{ bill.shippingPort }}</p>
+    <p><strong>إجمالي الوزن:</strong> {{ bill.totalWeight }}</p>
+    <p><strong>الوزن الصافي:</strong> {{ bill.netWeight }}</p>
+    <p><strong>تاريخ الوصول:</strong> {{ bill.arrivalDate | date: 'short' }}</p>
+    <p><strong>اسم القبطان:</strong> {{ bill.captainName }}</p>
+    <p><strong>الحالة:</strong> {{ bill.status }}</p>
+
+    <hr class="receipt-divider" />
+  </div>
 </div>

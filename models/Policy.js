@@ -6,15 +6,16 @@ const policySchema = new mongoose.Schema({
   goodsDescription: String,
   containerNumber: String,
   weight: Number,
-  containerSize: String, // Keep as String to match existing behavior
+  containerSize: String,
   goodsSize: String,
-  cooling: String,
+  cooling: Boolean,
   isShared: Boolean,
   shipmentType: String,
   serviceType: String,
-  containerType: String, // Add this field
-  ship: { type: mongoose.Schema.Types.ObjectId, ref: 'Ship' },
-  bill: Number, // Optional
+  containerType: String,
+  seaManagement: { type: mongoose.Schema.Types.ObjectId, ref: 'SeaManagement' }, // ✅ Reference SeaManagement
+  shipName: String, // ✅ Store shipName for easy access
+  bill: Number,
 });
 
 module.exports = mongoose.model('Policy', policySchema);

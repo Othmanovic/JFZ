@@ -65,6 +65,9 @@ export class LoginComponent {
       case 'e3dad': // Add the new role
         this.router.navigate(['/e3dad']);
         break;
+      case 'bayan': // Add the new role
+        this.router.navigate(['/bayan']);
+        break;
       default:
         this.router.navigate(['/login']);
         break;

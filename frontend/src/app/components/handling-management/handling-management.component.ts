@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SeaManagementService } from '../../services/sea-management.service';
-import { Ship } from '../../models/ship';
+import { SeaManagement } from '../../models/sea-management';
 
 @Component({
   selector: 'app-handling-management',
@@ -8,57 +8,57 @@ import { Ship } from '../../models/ship';
   styleUrl: './handling-management.component.scss'
 })
 export class HandlingManagementComponent {
-  ships: Ship[] = [];
+  seaManagementRecords: SeaManagement[] = [];
   searchTerm: string = '';
-  selectedShip: Ship | null = null;
+  selectedSeaManagement: SeaManagement | null = null;
   startWorkingDate: string = '';
 
   constructor(private seaManagementService: SeaManagementService) {}
 
   ngOnInit(): void {
-    this.loadShips();
+    this.loadSeaManagementRecords();
   }
 
-  loadShips(): void {
-    this.seaManagementService.getShips().subscribe(
+  loadSeaManagementRecords(): void {
+    this.seaManagementService.fetchSeaManagement().subscribe(
       (response) => {
-        this.ships = response;
+        this.seaManagementRecords = response;
       },
       (error) => {
-        console.error('Error loading ships:', error);
+        console.error('Error loading Sea Management records:', error);
       }
     );
   }
 
-  filteredShips(): Ship[] {
+  filteredRecords(): SeaManagement[] {
     if (!this.searchTerm) {
-      return this.ships;
+      return this.seaManagementRecords;
     }
-    return this.ships.filter((ship) =>
-      ship.bayanNumber?.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.seaManagementRecords.filter((record) =>
+      record.bayanNumber?.toString().includes(this.searchTerm)
     );
   }
 
-  selectShip(ship: Ship): void {
-    this.selectedShip = ship;
-    this.startWorkingDate = ship.startWorkingDate
-      ? new Date(ship.startWorkingDate).toISOString().split('T')[0]
+  selectRecord(record: SeaManagement): void {
+    this.selectedSeaManagement = record;
+    this.startWorkingDate = record.startWorkingDate
+      ? new Date(record.startWorkingDate).toISOString().split('T')[0]
       : '';
   }
 
   saveStartWorkingDate(): void {
-    if (!this.selectedShip) return;
-  
-    const updatedShip: Ship = {
-      ...this.selectedShip,
-      startWorkingDate: new Date(this.startWorkingDate), // Convert string to Date
+    if (!this.selectedSeaManagement) return;
+
+    const updatedRecord: SeaManagement = {
+      ...this.selectedSeaManagement,
+      startWorkingDate: new Date(this.startWorkingDate) // Convert string to Date
     };
-  
-    this.seaManagementService.updateShip(updatedShip).subscribe(
+
+    this.seaManagementService.updateSeaManagement(updatedRecord).subscribe(
       (response) => {
         alert('Start working date saved successfully!');
-        this.selectedShip = null;
-        this.loadShips();
+        this.selectedSeaManagement = null;
+        this.loadSeaManagementRecords();
       },
       (error) => {
         console.error('Error saving start working date:', error);
@@ -66,5 +66,4 @@ export class HandlingManagementComponent {
       }
     );
   }
-  
 }

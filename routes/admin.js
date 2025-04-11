@@ -4,28 +4,42 @@ const router = express.Router();
 const Ship = require('../models/Ship');
 const Price = require('../models/Prices');
 const Policy = require('../models/Policy');
+const SeaManagement = require('../models/SeaManagement'); // ✅ Import SeaManagement model
 
 // Add a policy for a specific ship
-router.post('/add-policy/:shipId', async (req, res) => {
+router.post('/add-policy/:seaManagementId', async (req, res) => {
   try {
-    const { shipId } = req.params;
+    const { seaManagementId } = req.params;
     const policyData = req.body;
 
-    // Create a new Policy document
+    // Fetch seaManagement details
+    const seaManagement = await SeaManagement.findById(seaManagementId);
+    if (!seaManagement) {
+      return res.status(404).json({ message: "Sea Management entry not found" });
+    }
+
+    // Create new policy
     const newPolicy = new Policy({
       ...policyData,
-      ship: shipId, // Associate the policy with the ship
+      seaManagement: seaManagementId,
+      shipName: seaManagement.shipName,
     });
 
-    // Save the policy to the database
-    const savedPolicy = await newPolicy.save();
+    await newPolicy.save();
 
-    // Return the saved policy
-    res.status(201).json(savedPolicy);
+    // Update SeaManagement to include this policy
+    seaManagement.policies.push(newPolicy._id);
+    await seaManagement.save();
+
+    res.status(201).json(newPolicy);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error adding policy:", error);
+    res.status(500).json({ message: "Failed to add policy" });
   }
 });
+
+
+
 
 
 router.get('/policy-details/:id', async (req, res) => {
@@ -84,10 +98,10 @@ router.put('/policies/:id', async (req, res) => {
 
 router.post('/prices', async (req, res) => {
   try {
-    const { shipmentType, containerType, containerSize, pricePerContainer, calculationMethod, volume, weight } = req.body;
+    const { serviceType, containerType, containerSize, pricePerContainer, calculationMethod, volume, weight } = req.body;
 
     const newPrice = new Price({
-      shipmentType,
+      serviceType,
       containerType,
       containerSize,
       weight,
@@ -107,7 +121,6 @@ router.post('/prices', async (req, res) => {
 router.get('/price', async (req, res) => {
   
   const { serviceType, containerSize, containerType } = req.query;
-console.log("Query", serviceType, containerSize, containerType );
 
 
   try {

@@ -1,0 +1,63 @@
+.bayan-dashboard {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  direction: rtl; /* Right-to-left for Arabic */
+  font-family: 'Tajawal', sans-serif;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .search-container {
+    text-align: center;
+    margin-bottom: 20px;
+    
+    input {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #1565c0;
+      }
+    }
+  }
+}

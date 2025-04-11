@@ -14,8 +14,8 @@
   <div class="ship-list">
     <div
       class="ship-card"
-      *ngFor="let ship of filteredShips()"
-      (click)="selectShip(ship)"
+      *ngFor="let ship of filteredRecords()"
+      (click)="selectRecord(ship)"
     >
       <h3>{{ ship.shipName }}</h3>
       <p><strong>Owner:</strong> {{ ship.owner }}</p>
@@ -24,11 +24,11 @@
   </div>
 
   <!-- Selected Ship Details -->
-  <div *ngIf="selectedShip" class="ship-details">
-    <h3>{{ selectedShip.shipName }}</h3>
-    <p><strong>Owner:</strong> {{ selectedShip.owner }}</p>
-    <p><strong>Flag:</strong> {{ selectedShip.flag }}</p>
-    <p><strong>Bayan Number:</strong> {{ selectedShip.bayanNumber }}</p>
+  <div *ngIf="selectedSeaManagement" class="ship-details">
+    <h3>{{ selectedSeaManagement.shipName }}</h3>
+    <p><strong>Owner:</strong> {{ selectedSeaManagement.owner }}</p>
+    <p><strong>Flag:</strong> {{ selectedSeaManagement.flag }}</p>
+    <p><strong>Bayan Number:</strong> {{ selectedSeaManagement.bayanNumber }}</p>
 
     <!-- Start Working Date -->
     <label for="startWorkingDate">Start Working Date:</label>

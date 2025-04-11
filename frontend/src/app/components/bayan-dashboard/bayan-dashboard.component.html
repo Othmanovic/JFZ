@@ -1,0 +1,32 @@
+<div class="bayan-dashboard">
+  <h1>لوحة تحكم البيان</h1>
+  
+  <div class="search-container">
+    <input type="text" placeholder="ابحث عن السفينة" [(ngModel)]="searchTerm" />
+  </div>
+  
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>اسم السفينة</th>
+        <th>رقم النداء</th>
+        <th>الوزن الإجمالي</th>
+        <th>الوكيل الملاحي</th>
+        <th>رقم البيان</th>
+        <th>الإجراء</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of seaManagementData">
+        <td>{{ item.shipName }}</td>
+        <td>{{ item.callSign }}</td>
+        <td>{{ item.totalWeight }}</td>
+        <td>{{ item.wakeel }}</td>
+        <td>{{ item.bayanNumber }}</td>
+        <td>
+          <button (click)="assignBayan(item)">إضافة/تحديث رقم البيان</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

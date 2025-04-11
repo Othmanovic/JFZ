@@ -13,10 +13,45 @@
       <p><strong>وصف البضاعة:</strong> {{ policy.goodsDescription }}</p>
     </div>
     <div class="row">
-      <p><strong>الفاتورة:</strong> {{ policy.bill || 'غير متوفرة' }}</p>
+      <p><strong>رقم الحاوية:</strong> {{ policy.containerNumber }}</p>
+      <p><strong>الوزن:</strong> {{ policy.weight }}</p>
+    </div>
+    <div class="row">
+      <p><strong>حجم الحاوية:</strong> {{ policy.containerSize }}</p>
+      <p><strong>حجم البضاعة:</strong> {{ policy.goodsSize }}</p>
+    </div>
+    <div class="row">
+      <p><strong>التبريد:</strong> {{ policy.cooling }}</p>
+      <p><strong>مشتركة:</strong> {{ policy.isShared ? 'نعم' : 'لا' }}</p>
+    </div>
+    <div class="row">
+      <p><strong>نوع الشحنة:</strong> {{ policy.shipmentType }}</p>
+      <p><strong>نوع الحاوية:</strong> {{ policy.containerType }}</p>
+    </div>
+    <div class="row">
+      <p><strong>المبلغ:</strong> {{ policy.bill || 'غير متوفرة' }}</p>
+    </div>
+  </div>
+
+   <!-- 🚢 Sea Management Details -->
+   <div class="info" *ngIf="seaManagementData">
+    <h2>تفاصيل السفينة</h2>
+    <div class="row">
+      <p><strong>اسم السفينة:</strong> {{ seaManagementData.shipName }}</p>
+      <p><strong>المالك:</strong> {{ seaManagementData.owner }}</p>
+    </div>
+    <div class="row">
+      <p><strong>نوع الشحنة:</strong> {{ seaManagementData.shipmentType }}</p>
+      <p><strong>الميناء:</strong> {{ seaManagementData.shippingPort }}</p>
+    </div>
+    <div class="row">
+      <p><strong>الوزن الكلي:</strong> {{ seaManagementData.totalWeight }}</p>
+      <p><strong>الوزن الصافي:</strong> {{ seaManagementData.netWeight }}</p>
+    </div>
+    <div class="row">
+      <p><strong>تاريخ الوصول:</strong> {{ seaManagementData.arrivalDate | date: 'dd/MM/yyyy' }}</p>
     </div>
   </div>
   <button (click)="printPage()">طباعة الفاتورة</button>
-  <button (click)="saveBill()">Save Bill</button>
-
+  <button (click)="saveBill()">حفظ الفاتورة</button>
 </div>

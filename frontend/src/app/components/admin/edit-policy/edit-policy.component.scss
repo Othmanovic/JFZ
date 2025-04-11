@@ -74,3 +74,14 @@ input[type='checkbox'] {
     width: 100%;
   }
 }
+
+.field-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  text-align: right;
+  direction: rtl;
+}
