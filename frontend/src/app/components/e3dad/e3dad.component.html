@@ -68,12 +68,12 @@
             <td title="{{ policy.goodsSize }}">{{ policy.goodsSize }}</td>
             <td title="{{ policy.cooling }}">{{ policy.cooling }}</td>
             <td title="{{ policy.isShared ? 'نعم' : 'لا' }}">{{ policy.isShared ? 'نعم' : 'لا' }}</td>
-            <td title="{{ policy.containerType }}">{{ policy.containerType }}</td>
             <td title="{{ policy.serviceType }}">{{ policy.serviceType }}</td>
+            <td title="{{ policy.containerType }}">{{ policy.containerType }}</td>
             <td>
               <button *ngIf="!policy.bill" (click)="calculateBill(policy)">حساب الفاتورة</button>
               <span *ngIf="policy.bill">
-                المبلغ: {{ policy.bill }}
+                <!-- المبلغ: {{ policy.bill }} -->
                 <button (click)="generateInvoiceForPolicy(policy)">عرض الفاتورة</button>
               </span>
             </td>

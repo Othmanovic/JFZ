@@ -1,0 +1,29 @@
+<div class="protection-container">
+  <h2>إضافة بيانات شباك الحماية</h2>
+
+  <form (ngSubmit)="submit()">
+    <label>اسم السفينة</label>
+    <select [(ngModel)]="formData.shipId" name="shipId" required (change)="onShipChange()">
+      <option *ngFor="let ship of ships" [value]="ship._id">{{ ship.shipName }}</option>
+    </select>
+    <label>اسم الجهة</label>
+<input type="text" [(ngModel)]="formData.companyName" name="companyName" required>
+
+
+    <label>عدد الأيام</label>
+    <input type="number" [(ngModel)]="formData.days" name="days" required (input)="calculateTotal()">
+
+    <label>عدد الشباك المستخدمة</label>
+    <input type="number" [(ngModel)]="formData.netsUsed" name="netsUsed" required (input)="calculateTotal()">
+
+    <label>سعر الشبك الواحد</label>
+    <input type="number" [(ngModel)]="formData.netRate" name="netRate" required (input)="calculateTotal()">
+
+    <label>ملاحظات التوقف / التأخير</label>
+    <textarea [(ngModel)]="formData.delays" name="delays"></textarea>
+
+    <div class="total-display">الإجمالي: {{ formData.total | number:'1.2-2' }} د.ل</div>
+
+    <button type="submit">💾 حفظ</button>
+  </form>
+</div>

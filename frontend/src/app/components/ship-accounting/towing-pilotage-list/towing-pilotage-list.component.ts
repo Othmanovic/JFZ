@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SeaManagementService } from '../../../services/sea-management.service'; // Make sure path is correct
 
 @Component({
   selector: 'app-towing-pilotage-list',
@@ -14,19 +15,25 @@ export class TowingPilotageListComponent {
   vouchers: any[] = [];
   submitted = false;
 
+  constructor(private seaManagementService: SeaManagementService) {}
+
   filterVouchers() {
+    if (!this.filter.fromDate || !this.filter.toDate) {
+      alert('يرجى اختيار التاريخين');
+      return;
+    }
+
     this.submitted = true;
 
-    // TODO: Replace with API call
-    this.vouchers = [
-      {
-        number: '2025/117',
-        shipName: 'LEPTIS STAR',
-        serviceType: 'قطر',
-        date: new Date(),
-        agent: 'وكالة النيل',
-        total: 3100.50
-      }
-    ];
+    this.seaManagementService.getVouchers(this.filter.fromDate, this.filter.toDate)
+      .subscribe({
+        next: (data) => {
+          this.vouchers = data;
+        },
+        error: (err) => {
+          console.error('Error fetching vouchers:', err);
+          this.vouchers = [];
+        }
+      });
   }
 }

@@ -67,7 +67,7 @@ export class TowingPilotageCreateComponent implements OnInit {
 
     for (let fee of this.allFees) {
       const rate = fee.rate;
-      let amount = this.voucher.netWeight * rate; // Simplified for now
+      let amount = this.voucher.netWeight * rate * this.voucher.stayDays; // Simplified for now
 
       this.calculatedFees.push({
         label: fee.label,

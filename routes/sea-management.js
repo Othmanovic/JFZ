@@ -6,6 +6,8 @@ const Policy = require('../models/Policy');
 const Wakeel = require('../models/Wakeel');
 const authMiddleware = require('../middleware/auth');
 const SeaFee = require('../models/SeaFees');
+const Voucher = require('../models/Voucher');
+const ProtectionNet = require('../models/ProtectionNet'); // create this model
 
 
 router.post('/', authMiddleware, async (req, res, next) => {
@@ -334,17 +336,81 @@ router.delete('/sea-fees/:id', authMiddleware, async (req, res) => {
 // Save new towing/pilotage voucher
 router.post('/vouchers', async (req, res) => {
   try {
-    const voucher = new Voucher(req.body);
-    await voucher.save();
-    res.status(201).json({ message: 'Voucher saved successfully' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const voucherData = req.body;
+
+    const newVoucher = new Voucher(voucherData);
+    await newVoucher.save();
+
+    res.status(201).json({ success: true, message: 'Voucher saved successfully', voucher: newVoucher });
+  } catch (error) {
+    console.error('Error saving voucher:', error);
+    res.status(500).json({ success: false, message: 'Failed to save voucher' });
+  }
+});
+
+// Fetch vouchers by date range
+router.get('/vouchers', authMiddleware, async (req, res) => {
+  try {
+    const { fromDate, toDate } = req.query;
+
+    const vouchers = await Voucher.find({
+      date: {
+        $gte: new Date(fromDate),
+        $lte: new Date(toDate),
+      }
+    }).sort({ date: -1 });
+
+    res.status(200).json(vouchers);
+  } catch (error) {
+    console.error('Error fetching vouchers:', error);
+    res.status(500).json({ message: 'Failed to fetch vouchers' });
   }
 });
 
 
 
+router.post('/protection-net', authMiddleware, async (req, res) => {
+  try {
+    const {
+      shipId,
+      shipName,
+      companyName,
+      days,
+      netsUsed,
+      netRate,
+      total,
+      delays
+    } = req.body;
 
+    const entry = new ProtectionNet({
+      shipId,
+      shipName,
+      companyName,
+      days,
+      netsUsed,
+      netRate,
+      total,
+      delays
+    });
+
+    await entry.save();
+    res.status(201).json({ message: 'Protection Net entry saved', entry });
+  } catch (error) {
+    console.error('Error saving protection net data:', error);
+    res.status(500).json({ message: 'Failed to save data' });
+  }
+});
+
+// Get all bills by company name
+router.get('/protection-net/company/:companyName', async (req, res) => {
+  try {
+    const { companyName } = req.params;
+    const bills = await ProtectionNet.find({ companyName: { $regex: new RegExp(companyName, 'i') } });
+    res.json(bills);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching protection net bills' });
+  }
+});
 
 
 

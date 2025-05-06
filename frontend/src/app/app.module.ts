@@ -43,6 +43,8 @@ import { WakeelComponent } from './components/wakeel/wakeel.component';
 import { TowingPilotageListComponent } from './components/ship-accounting/towing-pilotage-list/towing-pilotage-list.component';
 import { TowingPilotageCreateComponent } from './components/ship-accounting/towing-pilotage-create/towing-pilotage-create.component';
 import { FeesDashboardComponent } from './components/ship-accounting/fees-dashboard/fees-dashboard.component';
+import { ProtectionNetComponent } from './components/protection-net/protection-net.component';
+import { ProtectionNetSearchComponent } from './components/protection-net-search/protection-net-search.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { FeesDashboardComponent } from './components/ship-accounting/fees-dashbo
     TowingPilotageListComponent,
     TowingPilotageCreateComponent,
     FeesDashboardComponent,
+    ProtectionNetComponent,
+    ProtectionNetSearchComponent,
   ],
   imports: [
     BrowserModule,

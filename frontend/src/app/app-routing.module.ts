@@ -29,6 +29,8 @@ import { WakeelComponent } from './components/wakeel/wakeel.component';
 import { TowingPilotageListComponent } from './components/ship-accounting/towing-pilotage-list/towing-pilotage-list.component';
 import { TowingPilotageCreateComponent } from './components/ship-accounting/towing-pilotage-create/towing-pilotage-create.component';
 import { FeesDashboardComponent } from './components/ship-accounting/fees-dashboard/fees-dashboard.component';
+import { ProtectionNetComponent } from './components/protection-net/protection-net.component';
+import { ProtectionNetSearchComponent } from './components/protection-net-search/protection-net-search.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -56,6 +58,8 @@ const routes: Routes = [
   { path: 'towing-pilotage', component: TowingPilotageListComponent, canActivate: [AuthGuard], },
   { path: 'towing-pilotage-create', component: TowingPilotageCreateComponent, canActivate: [AuthGuard], },
   { path: 'fees-dashboard', component: FeesDashboardComponent, canActivate: [AuthGuard], },
+  { path: 'protection-net', component: ProtectionNetComponent, canActivate: [AuthGuard], },
+  { path: 'protection-net-search', component: ProtectionNetSearchComponent, canActivate: [AuthGuard], },
   { path: 'bayan', component: BayanDashboardComponent },
 
 

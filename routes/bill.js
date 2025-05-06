@@ -8,8 +8,16 @@ const SeaManagement = require("../models/SeaManagement");
 router.post('/', async (req, res) => {
   try {
     const billData = req.body;
-    console.log("Bill", billData);
+    console.log("Incoming Bill Data:", billData);
 
+    // Basic required field validation
+    if (!billData.shipId) {
+      return res.status(400).json({ error: 'shipId is required' });
+    }
+
+    if (!billData.billNumber || !billData.receiver || !billData.billAmount || !billData.bayanNumber || !billData.bayanYear) {
+      return res.status(400).json({ error: 'Missing required bill fields' });
+    }
 
     const newBill = new Bill({
       billNumber: billData.billNumber,
@@ -34,23 +42,24 @@ router.post('/', async (req, res) => {
       arrivalDate: billData.arrivalDate,
       captainName: billData.captainName,
 
-      // 🆕 Adding Bayan and Policy Data
+      // 🆕 Additional data
       bayanNumber: billData.bayanNumber,
       bayanYear: billData.bayanYear,
-      // policyNumber: billData.policyNumber,
 
-      status: billData.status || "Pending Review",
+      status: billData.status || 'Pending Review',
       createdAt: new Date(),
     });
-    
 
     await newBill.save();
     res.status(201).json(newBill);
+
   } catch (err) {
-    console.error('Error saving bill:', err);
-    res.status(500).json({ error: 'Failed to save bill.' });
+    console.error('Error saving bill:', err.message, err.errors || '');
+    res.status(500).json({ error: 'Failed to save bill', details: err.message });
   }
 });
+
+module.exports = router;
 
 
 router.get('/review', async (req, res) => {

@@ -1,5 +1,30 @@
 <div class="page-container">
   <div class="right-section">
+    <h2>تفاصيل الرسوم</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>البيان</th>
+          <th>التعريفة</th>
+          <th>القيمة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fee of calculatedFees">
+          <td>{{ fee.label }}</td>
+          <td>{{ fee.rate }}</td>
+          <td>{{ fee.amount | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-box">
+      <strong>إجمالي الفاتورة: {{ total | number:'1.2-2' }} د.ل</strong>
+    </div>
+
+  </div>
+
+  <div class="left-section">
     <h2>معلومات السفينة</h2>
 
     <form (ngSubmit)="submitVoucher()" #voucherForm="ngForm">
@@ -36,29 +61,6 @@
     </form>
   </div>
 
-  <div class="left-section">
-    <h2>تفاصيل الرسوم</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>البيان</th>
-          <th>التعريفة</th>
-          <th>القيمة</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let fee of calculatedFees">
-          <td>{{ fee.label }}</td>
-          <td>{{ fee.rate }}</td>
-          <td>{{ fee.amount | number:'1.2-2' }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="total-box">
-      <strong>إجمالي الفاتورة: {{ total | number:'1.2-2' }} د.ل</strong>
-    </div>
-
-  </div>
-  <button class="print-button" (click)="print()">🖨 طباعة القسيمة</button>
+ 
+  <!-- <button class="print-button" (click)="print()">🖨 طباعة القسيمة</button> -->
 </div>

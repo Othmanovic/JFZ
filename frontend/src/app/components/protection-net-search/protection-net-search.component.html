@@ -1,0 +1,48 @@
+<!-- protection-net-search.component.html -->
+<div class="container">
+  <h2>بحث قسائم شباك الحماية</h2>
+
+  <div class="search-bar">
+<input 
+  type="text" 
+  [(ngModel)]="searchName" 
+  name="searchName"
+  (keydown.enter)="search()"
+  placeholder="ادخل اسم الجهة للبحث"
+>
+    <button (click)="search()">بحث</button>
+  </div>
+
+  <!-- ✅ Printable Area -->
+  <div id="printable-area">
+    <h3>النتائج:</h3>
+    <table class="results-table" *ngIf="results.length">
+      <thead>
+        <tr>
+          <th>اسم السفينة</th>
+          <th>اسم الجهة</th>
+          <th>عدد الأيام</th>
+          <th>عدد الشباك</th>
+          <th>سعر الشباك</th>
+          <th>الإجمالي</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bill of results">
+          <td>{{ bill.shipName }}</td>
+          <td>{{ bill.companyName }}</td>
+          <td>{{ bill.days }}</td>
+          <td>{{ bill.netsUsed }}</td>
+          <td>{{ bill.netRate }}</td>
+          <td>{{ bill.total }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-summary" *ngIf="results.length">
+      <strong>إجمالي القسائم:</strong> {{ totalAmount | number:'1.2-2' }} د.ل
+    </div>
+  </div>
+
+  <button class="print-button" (click)="print()">🖨 طباعة</button>
+</div>

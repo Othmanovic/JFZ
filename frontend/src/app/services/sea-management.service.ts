@@ -241,8 +241,50 @@ deleteSeaFee(id: string): Observable<any> {
 }
 
 // sea-management.service.ts
-saveVoucher(data: any) {
-  return this.http.post('/vouchers', data);
+saveVoucher(data: any): Observable<any> {
+  const token = localStorage.getItem('id_token');
+  if (!token) {
+    throw new Error('Token not found in local storage');
+  }
+
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token.split(' ')[1]}`,
+  });
+
+  return this.http.post(`${this.apiUrl}/vouchers`, data, { headers });
+}
+
+// sea-management.service.ts
+getVouchers(fromDate: string, toDate: string): Observable<any[]> {
+  const token = localStorage.getItem('id_token');
+  if (!token) {
+    throw new Error('Token not found in local storage');
+  }
+
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token.split(' ')[1]}`,
+  });
+
+  // Sending dates as query parameters
+  return this.http.get<any[]>(`${this.apiUrl}/vouchers?fromDate=${fromDate}&toDate=${toDate}`, { headers });
+}
+
+saveProtectionNet(data: any): Observable<any> {
+  const token = localStorage.getItem('id_token');
+  if (!token) throw new Error('Token not found');
+
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token.split(' ')[1]}`,
+  });
+
+  return this.http.post('http://localhost:3000/api/sea-management/protection-net', data, { headers });
+}
+
+getProtectionNetBillsByCompany(companyName: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/protection-net/company/${companyName}`);
 }
 
 
