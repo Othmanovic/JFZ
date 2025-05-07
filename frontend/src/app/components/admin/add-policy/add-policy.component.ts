@@ -16,6 +16,7 @@ export class AddPolicyComponent implements OnInit {
     billNumber: '',
     receiver: '',
     goodsDescription: '',
+    serviceType: '',
     containerNumber: '',
     weight: 0,
     containerSize: '',

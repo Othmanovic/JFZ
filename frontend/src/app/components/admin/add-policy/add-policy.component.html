@@ -23,27 +23,7 @@
       />
     </div>
 
-    <div class="field-group">
-      <label for="goodsDescription">نوع الشحنة ووصفها </label>
-      <select
-        id="shipmentType"
-        [(ngModel)]="billOfLading.shipmentType"
-        name="shipmentType"
-        required
-      >
-        <option value="" disabled selected>اختر نوع الشحنة ووصفها</option>
-        <option value="سيارات">سيارات</option>
-        <option value="شاحنات">شاحنات</option>
-        <option value="ابقار">ابقار</option>
-        <option value="قطران">قطران</option>
-        <option value="سكر">سكر</option>
-        <option value="اسمنت مكيس">اسمنت مكيس</option>
-        <option value="اسمنت سائب">اسمنت سائب</option>
-        <option value="شعير">شعير</option>
-        <option value="القمح">القمح</option>
-        <!-- Add more options if needed -->
-      </select>
-    </div>
+    
 
     <div class="field-group">
       <label for="containerNumber">رقم الحاوية</label>
@@ -87,6 +67,74 @@
         name="goodsSize"
         required
       />
+    </div>
+
+    <div class="field-group">
+      <label for="goodsDescription">نوع الشحنة ووصفها </label>
+      <select
+        id="shipmentType"
+        [(ngModel)]="billOfLading.shipmentType"
+        name="shipmentType"
+        required
+      >
+        <option value="" disabled selected>اختر نوع الشحنة ووصفها</option>
+        <option value="سيارات">سيارات</option>
+        <option value="شاحنات">شاحنات</option>
+        <option value="ابقار">ابقار</option>
+        <option value="قطران">قطران</option>
+        <option value="سكر">سكر</option>
+        <option value="اسمنت مكيس">اسمنت مكيس</option>
+        <option value="اسمنت سائب">اسمنت سائب</option>
+        <option value="شعير">شعير</option>
+        <option value="القمح">القمح</option>
+        <!-- Add more options if needed -->
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label for="serviceType">نوع الخدمة</label>
+      <select
+        id="serviceType"
+        [(ngModel)]="billOfLading.serviceType"
+        name="serviceType"
+        required
+      >
+        <option value="عوائد مناولة">عوائد مناولة</option>
+        <option value="تخزين مكشوف">تخزين مكشوف</option>
+        <option value="تخزين مغطى">تخزين مغطى</option>
+        <option value="عوائد الانتفاع بالآلات الشوكية واللواقط">
+          عوائد الانتفاع بالآلات الشوكية واللواقط
+        </option>
+        <option value="عوائد الانتفاع بمعدات التفريغ">
+          عوائد الانتفاع بمعدات التفريغ
+        </option>
+        <option value="عوائد الانتفاع بالميزان">
+          عوائد الانتفاع بالميزان
+        </option>
+        <option value="عوائد الانتفاع بالروافع الارضية">
+          عوائد الانتفاع بالروافع الارضية
+        </option>
+        <option value="عوائد الانتفاع بالروافع الارضية">
+          عوائد الانتفاع بالروافع الارضية
+        </option>
+        <option value="عوائد حراسة البضائع">عوائد حراسة البضائع</option>
+        <option value="عوائد فرز البضائع">عوائد فرز البضائع</option>
+        <option value="عوائد التزود بالكهرباء">
+          عوائد التزود بالكهرباء
+        </option>
+        <option value="عوائد بقاء المركبات">عوائد بقاء المركبات</option>
+        <option value="عوائد النقل الداخلي">عوائد النقل الداخلي</option>
+        <option value="عوائد تحجيم البضائع">عوائد تحجيم البضائع</option>
+        <option value="عوائد وضع العلامات وشطبها وتصحيحها">
+          عوائد وضع العلامات وشطبها وتصحيحها
+        </option>
+        <option value="عوائد الغرمات والتعطيل">
+          عوائد الغرمات والتعطيل
+        </option>
+        <option value="عوائد الرصيف">عوائد الرصيف</option>
+        <option value="عوائد فتح كرشم">عوائد فتح كرشم</option>
+        <option value="عوائد أخرى">عوائد أخرى</option>
+      </select>
     </div>
 <!-- 
     <div class="field-group">
